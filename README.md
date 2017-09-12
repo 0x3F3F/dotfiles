@@ -1,5 +1,22 @@
 # DOTFILES
 
+> _"you are your dotfiles"_.
+
+## table of contents
+
+ - [Overview](#Overview)
+ - [How it Works](#How-it-Works)
+ - [Git](#Git)
+ - [vim](#vim)
+ - [transmission](#transmission)
+
+
+## Overview
+Store config files in one place under version control then symlink into place using 
+[gnu stow](http://www.gnu.org/software/stow/)
+
+The following programs will have their config files managed in this manner
+
 ```
  bin              > Scripts to setup links
  cmus             > Terminal MP3 player to use over SSH.
@@ -12,24 +29,6 @@
  transmission-rpi > Bit torrent via SSH on my Pi. Yes! SEE NOTE
  vim              > Based on a port of Vi for the Amiga, apparently.
 ```
-
-## table of contents
- - [Overview](#Overview)
- - [How it Works](#How-it-Works)
- - [Git](#Git)
- - [vim](#vim)
- - [transmission](#transmission)
-
-it's been said of every console user: 
-> _"you are your dotfiles"_.
-
-
-## Overview
-Store config files in one place under version control then symlink into place using 
-[gnu stow](http://www.gnu.org/software/stow/)
-
-You know it makes sense.
-
 
 ## How it Works
 By default, the stow command will create symlinks for files in the parent directory of where you execute the command. 
