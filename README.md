@@ -1,20 +1,6 @@
-```
-      ██            ██     ████ ██  ██                
-     ░██           ░██    ░██░ ░░  ░██                
-     ░██  ██████  ██████ ██████ ██ ░██  █████   ██████
-  ██████ ██░░░░██░░░██░ ░░░██░ ░██ ░██ ██░░░██ ██░░░░ 
- ██░░░██░██   ░██  ░██    ░██  ░██ ░██░███████░░█████ 
-░██  ░██░██   ░██  ░██    ░██  ░██ ░██░██░░░░  ░░░░░██
-░░██████░░██████   ░░██   ░██  ░██ ███░░██████ ██████ 
- ░░░░░░  ░░░░░░     ░░    ░░   ░░ ░░░  ░░░░░░ ░░░░░░  
- 
-  ▓▓▓▓▓▓▓▓▓▓
- ░▓ About  ▓ custom linux config files
- ░▓ Author ▓ 0x3F3F
- ░▓ Site   ▓ http://www.iainbenson.com
- ░▓▓▓▓▓▓▓▓▓▓
- ░░░░░░░░░░
+#DOTFILES
 
+```
  bin              > Scripts to setup links
  cmus             > Terminal MP3 player to use over SSH.
  getmail          > Was using this with mutt. May drop it.
@@ -25,7 +11,6 @@
  startup          > Important startup scripts .bashrc .profile .Xdefaults
  transmission-rpi > Bit torrent via SSH on my Pi. Yes! SEE NOTE
  vim              > Based on a port of Vi for the Amiga, apparently.
-
 ```
 
 ## table of contents
@@ -40,14 +25,14 @@ it's been said of every console user:
 > _"you are your dotfiles"_.
 
 
-# Overview
+## Overview
 Store config files in one place under version control then symlink into place using 
 [gnu stow](http://www.gnu.org/software/stow/)
 
 You know it makes sense.
 
 
-# How it Works
+## How it Works
 By default, the stow command will create symlinks for files in the parent directory of where you execute the command. 
 So my dotfiles setup assumes this repo is located in the root of your home directory `~/.dotfiles` and all stow commands should be executed in that directory.
 
@@ -71,7 +56,7 @@ If a default file was created upon program installation you must delete it first
 This does not apply to directories, only files.
 
 
-# Git
+## Git
 
 I have git setup to use ssh keys
 
@@ -88,6 +73,7 @@ I have git setup to use ssh keys
 
 ### Changing Files
 
+	git add <changedfile>
 	git commit -m "Message Here"
 	git push origin master
 
@@ -97,13 +83,13 @@ I have git setup to use ssh keys
 	git pull
 
 
-# Notes on some programs
+## Notes on some programs
 Some programs are a bit fiddley, extra info here: 
 
-## vim
+### vim
 This includes only .vimrc and not individual plug ins that need to be installed via Bundle :PluginInstall!
 
-## transmission
+### transmission
 I use transmission-daemon on my Raspberry Pi,connecting via SSH and controling via transmission-remote-cli.
 Ihttps://github.com//dotfiles $HOME/.dotfilest all rather cool.  Installation of this is **NON STANDARD** as installs config to alternate location and the 
 daemon needs to be stopped otherwise changes overwriten
