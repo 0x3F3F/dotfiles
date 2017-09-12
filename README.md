@@ -15,16 +15,16 @@
  ░▓▓▓▓▓▓▓▓▓▓
  ░░░░░░░░░░
 
- bin				> Scripts to setup links
- cmus			    > Terminal MP3 player to use over SSH.
- getmail			> Was using this with mutt. May drop it.
- i3					> Using i3 window manager, my descent into 1980's era computing continues...
- mutt			    > Email client with Spectrum 48K styling & vim key binds.  Minimal setup ie no passwords
- ranger				> Vimey terminal File Manager. Ladies love it.
- rawdog				> RSS Aggregator thingy.
- startup			> Important startup scripts .bashrc .profile .Xdefaults
- transmission-rpi	> Bit torrent via SSH on my Pi. Yes! SEE NOTE
- vim            	> Based on a port of Vi for the Amiga, apparently.
+ bin              > Scripts to setup links
+ cmus             > Terminal MP3 player to use over SSH.
+ getmail          > Was using this with mutt. May drop it.
+ i3               > My descent into 1980's era computing continues...
+ mutt             > Email client with Spectrum 48K styling & vim key binds.
+ ranger           > Vimey terminal File Manager. Ladies love it.
+ rawdog           > RSS Aggregator thingy.
+ startup          > Important startup scripts .bashrc .profile .Xdefaults
+ transmission-rpi > Bit torrent via SSH on my Pi. Yes! SEE NOTE
+ vim              > Based on a port of Vi for the Amiga, apparently.
 
 ```
 
