@@ -15,7 +15,6 @@
 
 ## table of contents
  - [Overview](#Overview)
- - [Managing](#Managing)
  - [How it Works](#How-it-Works)
  - [Git](#Git)
  - [vim](#vim)
@@ -91,7 +90,7 @@ This includes only .vimrc and not individual plug ins that need to be installed 
 
 ### transmission
 I use transmission-daemon on my Raspberry Pi,connecting via SSH and controling via transmission-remote-cli.
-Ihttps://github.com//dotfiles $HOME/.dotfilest all rather cool.  Installation of this is **NON STANDARD** as installs config to alternate location and the 
+Ihttps://github.com//dotfiles $HOME/.dotfiles all rather cool.  Installation of this is **NON STANDARD** as installs config to alternate location and the 
 daemon needs to be stopped otherwise changes overwriten
 
 	sudo service transmission-dawmon stop
