@@ -1,0 +1,52 @@
+! IRB 
+! Apparently older version of storing X resources.  
+! *IMPORTANT*  If Xresources present then this should be ignored, 
+! xresourcea don't think worked for me
+
+!-- URxvt Settings - default fonts shit so theis helps --!
+!http://www.linuxquestions.org/questions/linux-general-1/urxvt-4175418080/
+URxvt*font: xft:Monospace:pixelsize=11
+! Dont use a bold font
+URxvt*boldFont: xft:Monospace:pixelsize=11
+URxvt.scrollBar: false
+URxvt.letterSpace: -1
+URxvt.borderLess:       false
+URxvt*internalBorder:       0
+URxvt*externalBorder:       0
+! Fade window when not focused
+URxvt*fading:			20
+! Try to fix white border on lhs and bottom of term
+! Set background color to same as that used in colour scheme 
+! .config/base16-shell/base16-ashes.dark.sh, setup in bashrc.
+! Otherwise choose back instead of default of white
+URxvt*background:		Black
+! URxvt*background:	Dark Gray	
+!URxvt*background:	[95]#1C2023	
+
+! Following allows  copy/paste with Ctrl-Shft-C/V as no insert in keyboard
+URxvt.perl-ext-common: default,clipboard,matcher
+URxvt.iso14755: False
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+
+! Use matcher above to allow clickable links
+URxvt*urlLauncher:		/usr/bin/firefox
+
+
+!-- Xft settings -- !
+"Xft.dpi:        96
+"Xft.antialias:  true
+"Xft.rgba:       rgb
+"Xft.hinting:    true
+Xft.hintstyle:  hintfull
+! -- Fonts -- !
+"URxvt.font:xft:Monospace:pixelsize=10
+"URxvt.boldfont:xft:Monospace-Bold:pixelsize=10
+
+
+
+
+
+
+
+

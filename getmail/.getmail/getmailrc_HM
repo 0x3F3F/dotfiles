@@ -1,0 +1,26 @@
+[retriever]
+type = SimplePOP3SSLRetriever
+server = pop3.live.com
+username = iainben@hotmail.com
+password = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+[destination]
+type = MDA_external
+path = /usr/bin/maildrop
+arguments = ("-f", "%(sender)")
+
+[options]
+verbose=0
+read_all=false
+delete=false
+delete_after=0
+delete_bigger_than=0
+max_bytes_per_session=0
+max_message_size=0
+max_messages_per_session=0
+delivered_to=false
+received=false
+message_log=~/.getmail/logs/getmail_HM.log
+message_log_syslog=false
+message_log_verbose=true
+

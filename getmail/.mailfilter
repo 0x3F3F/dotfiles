@@ -1,0 +1,29 @@
+DEFAULT="$HOME/.mail"
+WEBSITE="$DEFAULT/Inbox_IainBenson"
+GMAIL="/tmp"
+HOTMAIL="$DEFAULT/Inbox_Hotmail"
+
+logfile "/home/iain/.getmail/logs/maildrop.log"
+
+if (/^(To|Cc|Bcc):.*iain@iainbenson/)
+{
+  xfilter "python /home/iain/bin/notify_email.py"
+  to $WEBSITE
+}
+
+if (/^(To|Cc|Bcc):.*iainbenson@gmail/)
+{
+  xfilter "python /home/iain/bin/notify_email.py" 
+  to $GMAIL
+}
+
+if (/^(To|Cc|Bcc):.*iainbenson@hotmail/)
+{
+  xfilter "python /home/iain/bin/notify_email.py"
+  to $HOTMAIL
+}
+
+to $DEFAULT
+
+
+
