@@ -18,12 +18,12 @@ Store config files in one place under version control then symlink into place us
 The following programs will have their config files managed in this manner
 
 ```
- bin              > Scripts to setup links
+ bin              > Scripts to setup symlinks
  cmus             > Terminal MP3 player to use over SSH.
  getmail          > Was using this with mutt. May drop it.
  i3               > My descent into 1980's era computing continues...
  mutt             > Email client with Spectrum 48K styling & vim key binds.
- ranger           > Vimey terminal File Manager. Ladies love it.
+ ranger-rpi       > Vimey terminal File Manager. Ladies love it.
  rawdog           > RSS Aggregator thingy.
  startup          > Important startup scripts .bashrc .profile .Xdefaults
  transmission-rpi > Bit torrent via SSH on my Pi. Yes! SEE NOTE
@@ -32,7 +32,8 @@ The following programs will have their config files managed in this manner
 
 ## How it Works
 By default, the stow command will create symlinks for files in the parent directory of where you execute the command. 
-So my dotfiles setup assumes this repo is located in the root of your home directory `~/.dotfiles` and all stow commands should be executed in that directory.
+So my dotfiles setup assumes this repo is located in the root of your home directory ~/.dotfiles 
+and all stow commands should be executed in that directory.
 
 **Quick setup**:
 
@@ -63,17 +64,13 @@ I have git setup to use ssh keys
 	cd ~/.dotfiles
 	git clone git@github:0x3F3F/dotfiles.git
 
-### Adding Files
+### Adding or Modifying Files
 
 	git add <filename>
 	git commit -m "Message Here"
 	git push origin master
 
-### Changing Files
-
-	git add <changedfile>
-	git commit -m "Message Here"
-	git push origin master
+If updating multiple files then can do a `git add .`
 
 ### Getting Updates
 
@@ -85,12 +82,12 @@ I have git setup to use ssh keys
 Some programs are a bit fiddley, extra info here: 
 
 ### vim
-This includes only .vimrc and not individual plug ins that need to be installed via Bundle :PluginInstall!
+This includes only .vimrc and not individual plug ins that need to be installed via Vundle:PluginInstall!
 
 ### transmission
 I use transmission-daemon on my Raspberry Pi,connecting via SSH and controling via transmission-remote-cli.
-Ihttps://github.com//dotfiles $HOME/.dotfiles all rather cool.  Installation of this is **NON STANDARD** as installs config to alternate location and the 
-daemon needs to be stopped otherwise changes overwriten
+All rather cool.  Installation of this is **NON STANDARD** as installs config to alternate location and the 
+daemon needs to be stopped otherwise changes overwriten. I guess I could script this
 
 	sudo service transmission-dawmon stop
 	/var/lib/transmission-daemon/info/settings.json
