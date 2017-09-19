@@ -7,15 +7,14 @@
  - [Overview](#Overview)
  - [How it Works](#How-it-Works)
  - [Git](#Git)
- - [vim](#vim)
- - [transmission](#transmission)
+ - [Notes on Some Programs](#Notes-on-Some-Programs)
 
 
 ## Overview
 Store config files in one place under version control then symlink into place using 
 [gnu stow](http://www.gnu.org/software/stow/)
 
-The following programs will have their config files managed in this manner
+Including program configs where I've changed from the default.  The following programs will have their config files managed in this manner
 
 ```
  bin              > Scripts to setup symlinks
@@ -33,22 +32,16 @@ The following programs will have their config files managed in this manner
 ## How it Works
 By default, the stow command will create symlinks for files in the parent directory of where you execute the command. 
 So my dotfiles setup assumes this repo is located in the root of your home directory ~/.dotfiles 
-and all stow commands should be executed in that directory.
 
-**Quick setup**:
+To **stow** (Add links):
 
-    git clone git@github.com:0x3F3F/dotfiles.git
+I have machine specific scripts, due to the raspberry pi's Very different setup. They are `StowStuff.sh` and `StowStuffRPi.sh`.  To Add or ReAdd run :
 
-To **stow**:
+	cd ~/.dotfiles/bin/StowStuff.sh -R
 
-    cd $HOME/.dotfiles
-	stow bash git [... other directories ...]
+To **unstow** (delete):
 
-To **unstow**:
-
-    cd $HOME/.dotfiles
-	stow -D bash git [... other directories ...]
-
+	cd ~/.dotfiles/bin/StowStuff.sh -D
 
 **note:** stow can only create a symlink if a config file does not already exist.
 If a default file was created upon program installation you must delete it first before you can install a new one with stow.
@@ -61,8 +54,7 @@ I have git setup to use ssh keys
 
 ### Fetching Config
 
-	cd ~/.dotfiles
-	git clone git@github:0x3F3F/dotfiles.git
+	git clone git@github:0x3F3F/dotfiles.git ~/.dotfiles
 
 ### Adding or Modifying Files
 
@@ -78,11 +70,12 @@ If updating multiple files then can do a `git add .`
 	git pull
 
 
-## Notes on some programs
+## Notes on Some Programs
 Some programs are a bit fiddley, extra info here: 
 
 ### vim
-This includes only .vimrc and not individual plug ins that need to be installed via Vundle:PluginInstall!
+This includes only .vimrc and not individual plug ins that need to be installed via Vundle:PluginInstall!  
+I've put Vimptanator config here, on off chance Firefox get their act together.
 
 ### transmission
 I use transmission-daemon on my Raspberry Pi,connecting via SSH and controling via transmission-remote-cli.
