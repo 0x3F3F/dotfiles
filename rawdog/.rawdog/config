@@ -5,7 +5,7 @@
 # If you want to include another config file, then use "include FILENAME".
 
 # Times in this file are specified as a value and a unit (for instance,
-# "4h").  Units available are "s" (seconds), "m" (minutes), "h" (hours),
+# "4h.  Units available are "s" (seconds), "m" (minutes), "h" (hours),
 # "d" (days) and "w" (weeks). If no unit is specified, rawdog will
 # assume minutes.
 # Boolean (yes/no) values in this file are specified as "true" or "false".
@@ -257,7 +257,7 @@ changeconfig true
 # format              "text" to indicate that the descriptions in this feed
 #                     are unescaped plain text (rather than the usual HTML),
 #                     and should be escaped and wrapped in a <pre> element
-# X_proxy             Proxy URL for protocol X (for instance, "http_proxy")
+# X_proxy             Proxy URL for protocol X (for instance, "http_proxy
 # proxyuser           User for proxy basic authentication
 # proxypassword       Password for proxy basic authentication
 # allowduplicates     "true" to disable duplicate detection for this feed
@@ -280,34 +280,33 @@ changeconfig true
 #	define_myclass broken
 #feed 3h http://proxyfeed.example.com/proxied.rss http_proxy=http://localhost:1234/
 #feed 3h http://dupsfeed.example.com/duplicated.rss allowduplicates=true
-
-add("http://feeds.feedburner.com/Golemxiv-Thoughts")
-add("http://feeds.feedburner.com/MadFientist")
-add("http://feeds.feedburner.com/RetirementInvestingToday")
-add("https://whichinvestmenttrust.com/feed/")
-add("http://alexgurevich.tumblr.com/rss")
-add("https://moneymatterstoo.wordpress.com/feed/")
-add("http://www.epsilontheory.com/rss-feed/")
-add("https://www.youtube.com/feeds/videos.xml?channel_id=UC6WVWDoJOKsHR_fKM30a8lA")
-add("http://oldschoolmacro.com/feed/")
-add("http://feeds.feedburner.com/SamHarris")
-add("http://www.abc.net.au/radionational/feed/2884506/podcast.xml")
-add("https://tim.blog/feed/")
-add("http://feeds.feedburner.com/CorbettReportRSS")
-add("http://nycskeptics.org/storage/feeds/rs.xml")
-add("https://www.youtube.com/feeds/videos.xml?channel_id=UC7IcJI8PUf5Z3zKxnZvTBog")
-add("https://www.youtube.com/feeds/videos.xml?channel_id=UCzQUP1qoWDoEbmsQxvdjxgQ")
-add("https://rss.art19.com/under-the-skin")
-add("http://investorfieldguide.com/feed/")
-add("http://chatwithtraders.com/feed/")
-add("http://www.salientpartners.com/podcasts/feed/")
-add("https://rss.art19.com/the-investors-podcast")
-add("http://adventuresinfinance.realvision.libsynpro.com/rss")
-add("https://www.macrovoices.com/component/podcastmanager/?format=raw&amp;feedname=2")
-add("http://feeds.feedburner.com/BrewinDolphinPodcast")
-add("https://grantpub.libsyn.com/rss")
-add("http://tedseides.libsyn.com/rss")
-add("http://mebfaber.libsyn.com/rss")
-add("https://www.youtube.com/feeds/videos.xml?channel_id=UCRFGG_cqU3NzQ5A-0HTCIxg")
-add("https://www.youtube.com/feeds/videos.xml?channel_id=UCkf4VIqu3Acnfzuk3kRIFwA")
-add("https://www.youtube.com/feeds/videos.xml?channel_id=UCqULRBhtbtGwhBC6NU5G2Rw")
+feed 3h http://feeds.feedburner.com/Golemxiv-Thoughts
+feed 3h http://feeds.feedburner.com/MadFientist
+feed 3h http://feeds.feedburner.com/RetirementInvestingToday
+feed 3h https://whichinvestmenttrust.com/feed/
+feed 3h http://alexgurevich.tumblr.com/rss
+feed 3h https://moneymatterstoo.wordpress.com/feed/
+feed 3h http://www.epsilontheory.com/rss-feed/
+feed 3h https://www.youtube.com/feeds/videos.xml?channel_id=UC6WVWDoJOKsHR_fKM30a8lA
+feed 3h http://oldschoolmacro.com/feed/
+feed 3h http://feeds.feedburner.com/SamHarris
+feed 3h http://www.abc.net.au/radionational/feed/2884506/podcast.xml
+feed 3h https://tim.blog/feed/
+feed 3h http://feeds.feedburner.com/CorbettReportRSS
+feed 3h http://nycskeptics.org/storage/feeds/rs.xml
+feed 3h https://www.youtube.com/feeds/videos.xml?channel_id=UC7IcJI8PUf5Z3zKxnZvTBog
+feed 3h https://www.youtube.com/feeds/videos.xml?channel_id=UCzQUP1qoWDoEbmsQxvdjxgQ
+feed 3h https://rss.art19.com/under-the-skin
+feed 3h http://investorfieldguide.com/feed/
+feed 3h http://chatwithtraders.com/feed/
+feed 3h http://www.salientpartners.com/podcasts/feed/
+feed 3h https://rss.art19.com/the-investors-podcast
+feed 3h http://adventuresinfinance.realvision.libsynpro.com/rss
+feed 3h https://www.macrovoices.com/component/podcastmanager/?format=raw&amp;feedname=2
+feed 3h http://feeds.feedburner.com/BrewinDolphinPodcast
+feed 3h https://grantpub.libsyn.com/rss
+feed 3h http://tedseides.libsyn.com/rss
+feed 3h http://mebfaber.libsyn.com/rss
+feed 3h https://www.youtube.com/feeds/videos.xml?channel_id=UCRFGG_cqU3NzQ5A-0HTCIxg
+feed 3h https://www.youtube.com/feeds/videos.xml?channel_id=UCkf4VIqu3Acnfzuk3kRIFwA
+feed 3h https://www.youtube.com/feeds/videos.xml?channel_id=UCqULRBhtbtGwhBC6NU5G2Rw
