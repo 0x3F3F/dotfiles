@@ -99,8 +99,6 @@ if [ "$HOSTNAME" = raspberrypi ] ; then
 	alias rr="/usr/bin/ranger"
 	alias rt="/usr/bin/ranger /media/wdhd/FilmsTV/TempQueue"
 
-	eval(`ssh-agent`)
-	ssh-add ~/.ssh/gitkey
 else
 	############ IRB Other Aliases ###############
 	#Stop gvim errors on startup
