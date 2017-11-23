@@ -117,8 +117,8 @@ else
 	alias c="/usr/bin/cmus"
 fi
 
-weather () { curl wttr.in/~"$0"; }
-cheat () { curl cheat.sh/~"$0"; }
+weather () { curl wttr.in/"$@"; }
+cheat () { curl cheat.sh/"$@"; }
 
 #Fuck off python 2.x
 #alias python=python3
