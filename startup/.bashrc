@@ -99,6 +99,9 @@ if [ "$HOSTNAME" = raspberrypi ] ; then
 	alias rr="/usr/bin/ranger"
 	alias rt="/usr/bin/ranger /media/wdhd/FilmsTV/TempQueue"
 
+	eval `ssh-agent -s`
+	ssh-add ~/.ssh/gitkey
+
 else
 	############ IRB Other Aliases ###############
 	#Stop gvim errors on startup
@@ -114,9 +117,8 @@ else
 	alias c="/usr/bin/cmus"
 fi
 
-
-
-
+weather () { curl wttr.in/~"$0"; }
+cheat () { curl cheat.sh/~"$0"; }
 
 #Fuck off python 2.x
 #alias python=python3
