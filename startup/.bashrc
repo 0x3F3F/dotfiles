@@ -99,7 +99,7 @@ if [ "$HOSTNAME" = raspberrypi ] ; then
 	alias rr="/usr/bin/ranger"
 	alias rt="/usr/bin/ranger /media/wdhd/FilmsTV/TempQueue"
 
-	eval(`ssh-agent`)
+	eval `ssh-agent -s`
 	ssh-add ~/.ssh/gitkey
 else
 	############ IRB Other Aliases ###############
