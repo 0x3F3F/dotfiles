@@ -92,7 +92,8 @@ fi
 if [ "$HOSTNAME" = raspberrypi ] ; then
 	########## IRB Pi Specifig Aliases ###########
 	#Move to separate file as below if gets big list
-	alias tr='transmission-remote-cli'
+	alias tr='transmission-remote'
+	alias tc='transmission-remote-cli'
 	alias gm='cd /media/wdhd'
 	alias gf='cd /media/wdhd/FilmsTV'
 	alias gt='cd /media/wdhd/FilmsTV/TempQueue'
