@@ -15,7 +15,7 @@ filetype plugin indent off
 syntax off
 
 "Bundle stuff 
-set rtp+=/home/pi/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'bling/vim-airline'

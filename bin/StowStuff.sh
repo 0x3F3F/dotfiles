@@ -37,6 +37,7 @@ cd ~/.dotfiles
 /usr/bin/stow $1 ranger-rpi
 /usr/bin/stow $1 rawdog
 /usr/bin/stow $1 startup
+/usr/bin/stow $1 tmux
 #/usr/bin/stow $1 transmission-rpi
 /usr/bin/stow $1 vim 
 
