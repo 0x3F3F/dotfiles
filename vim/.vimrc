@@ -346,8 +346,6 @@ nnoremap <F3> :set list!<CR>
 "let mapleader=","
 let mapleader="\<Space>"
 
-" Useful to remap ;
-nnoremap ; :
 " Quicker Escape
 " Use NOREmap perferable as otherwise pauses to see what next char is 
 inoremap jj <esc>
