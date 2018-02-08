@@ -6,12 +6,13 @@
 #export LC_ALL=C
 export LC_ALL="en_GB.UTF-8"
 
+# This breaks WinSCP, maybe start automaticaslly from termux instead.
 # Raspberry Pi Start tmux straight away
-if [ "$HOSTNAME" = raspberrypi ] ; then
- if command -v tmux>/dev/null; then
-  [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
- fi
-fi
+#if [ "$HOSTNAME" = raspberrypi ] ; then
+# if command -v tmux>/dev/null; then
+#  [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
+# fi
+#fi
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
