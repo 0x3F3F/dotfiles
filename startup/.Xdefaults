@@ -3,45 +3,84 @@
 ! *IMPORTANT*  If Xresources present then this should be ignored, 
 ! xresourcea don't think worked for me
 
+URxvt*font:            xft:Liberation Mono:size=10
+URxvt*boldFont:        xft:Liberation Mono:size=10
+URxvt*italicFont:      xft:Liberation Mono:italic:autohint=true:size=10
+URxvt*boldItalicFont:  xft:Liberation Mono:bold:italic:autohint=true:size=10
+URxvt*letterSpace: -1
+URxvt.scrollBar: false
+! Fade window when not focused
+URxvt*fading: 60
+URxvt.saveLines: 65535
+URxvt.depth: 32
+URxvt*cursorUnderline: true
+Rxvt*cursorBlink: true
+Rxvt*visualBell: true
+URxvt*termName: rxvt-unicode-256color
+!
+! Color Scheme copied from a website.  Will do for now
+URxvt*background:#101010
+URxvt*foreground:#f2f2f2
+! Normal
+! color0    black
+! color1    red
+! color2    green
+! color3    yellow
+! color4    blue
+! color5    purple
+! color6    cyan
+! color7    white
+urxvt*color0:    #6c6c6c
+urxvt*color1:    #e9897c
+urxvt*color2:    #b6e77d
+urxvt*color3:    #ecebbe
+urxvt*color4:    #a9cdeb
+urxvt*color5:    #ea96eb
+urxvt*color6:    #c9caec
+urxvt*color7:    #f2f2f2
+! Light
+! color8    black
+! color9    red
+! color10    green
+! color11    yellow
+! color12    blue
+! color13    purple
+! color14    cyan
+! color15    white
+urxvt*color8:    #747474
+urxvt*color9:    #f99286
+urxvt*color10:    #c3f786
+urxvt*color11:    #fcfbcc
+urxvt*color12:    #b6defb
+urxvt*color13:    #fba1fb
+urxvt*color14:    #d7d9fc
+urxvt*color15:    #e2e2e2
+
 !-- URxvt Settings - default fonts shit so theis helps --!
 !http://www.linuxquestions.org/questions/linux-general-1/urxvt-4175418080/
-URxvt*font: xft:Monospace:pixelsize=11
-! Dont use a bold font
-URxvt*boldFont: xft:Monospace:pixelsize=11
-URxvt.scrollBar: false
-URxvt.letterSpace: -1
-URxvt.borderLess:       false
-URxvt*internalBorder:       0
-URxvt*externalBorder:       0
-! Fade window when not focused
-URxvt*fading:			20
-! Try to fix white border on lhs and bottom of term
-! Set background color to same as that used in colour scheme 
-! .config/base16-shell/base16-ashes.dark.sh, setup in bashrc.
-! Otherwise choose back instead of default of white
-URxvt*background:		Black
-! URxvt*background:	Dark Gray	
-!URxvt*background:	[95]#1C2023	
+!URxvt.borderLess:       false
+!URxvt*internalBorder:       0
+!URxvt*externalBorder:       0
 
 ! Following allows  copy/paste with Ctrl-Shft-C/V as no insert in keyboard
-URxvt.perl-ext-common: default,clipboard,matcher
-URxvt.iso14755: False
-URxvt.keysym.Shift-Control-C: perl:clipboard:copy
-URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+!URxvt.perl-ext-common: default,clipboard,matcher
+!URxvt.iso14755: False
+!URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+!URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 
 ! Use matcher above to allow clickable links
-URxvt*urlLauncher:		/usr/bin/firefox
+!URxvt*urlLauncher:		/usr/bin/firefox
 
 
 !-- Xft settings -- !
-"Xft.dpi:        96
-"Xft.antialias:  true
-"Xft.rgba:       rgb
-"Xft.hinting:    true
-Xft.hintstyle:  hintfull
+!"Xft.dpi:        96
+!"Xft.antialias:  true
+!"Xft.rgba:       rgb
+!"Xft.hinting:    true
+!Xft.hintstyle:  hintfull
 ! -- Fonts -- !
-"URxvt.font:xft:Monospace:pixelsize=10
-"URxvt.boldfont:xft:Monospace-Bold:pixelsize=10
+!"URxvt.font:xft:Monospace:pixelsize=10
+!"URxvt.boldfont:xft:Monospace-Bold:pixelsize=10
 
 
 

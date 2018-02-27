@@ -159,7 +159,7 @@ hide_edge_borders vertical
 workspace_auto_back_and_forth yes
  
 #Set background image
-exec --no-startup-id feh --bg-scale /usr/share/backgrounds/linuxmint-rebecca/papalars_9075273178.jpg 
+exec --no-startup-id feh --bg-scale /usr/share/backgrounds/linuxmint-sarah/bartosova_aurora.jpg 
 
 # Try to fix bug that show colored bars at bottom right of terminal windws
 # Caused by terminal application not painting background on all of canvas
@@ -199,12 +199,12 @@ for_window [title=".*\(Private Browsing\).*"] focus
 
 
 # layouts
-exec --no-startup-id "i3-msg 'workspace 1; append_layout /home/iain/.i3/workspace-1.json'"
+exec --no-startup-id "i3-msg 'workspace 1; append_layout /home/iain/.config/i3/workspace-1.json'"
 
 # Startup Applets
 exec --no-startup-id nm-applet
 exec --no-startup-id pa-applet
-exec --no-startup-id gnome-encfs-manager
+#exec --no-startup-id gnome-encfs-manager
 exec --no-startup-id udiskie --tray 
 
 #Start with USB keyboard which is US
@@ -214,7 +214,6 @@ exec --no-startup-id onboard
 
 # Start other programs
 exec --no-startup-id /usr/bin/firefox
-exec --no-startup-id /usr/bin/parcellite
 
 # Shutdown script from https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/ 
 set $mode_system System (l) lock, (e) Logout, (s) Shutdown, (h) Hibernate, (r) Reboot, (Shift+s) Suspend
