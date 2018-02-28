@@ -3,10 +3,19 @@
 ! *IMPORTANT*  If Xresources present then this should be ignored, 
 ! xresourcea don't think worked for me
 
-URxvt*font:            xft:Liberation Mono:size=10
-URxvt*boldFont:        xft:Liberation Mono:size=10
-URxvt*italicFont:      xft:Liberation Mono:italic:autohint=true:size=10
-URxvt*boldItalicFont:  xft:Liberation Mono:bold:italic:autohint=true:size=10
+! Stackoverflow recommending adding extra fonts to get all unicode chars.  This worked.
+URxvt.font: xft:Ubuntu Mono:pixelsize=16:antialias=true:hinting=true,\
+			xft:Source Code Pro:pixelsize=14:style=medium:antialias=true,\
+            -*-unifont-*-*-*-*-*-*-*-*-*-*-*-*
+! Disable bold, empty will use normal.
+URxvt*boldFont:
+ 
+
+! WARNING: THis Doesnt dis underscores in urxvt
+! URxvt*font:            xft:Monospace:pixelsize=14
+! URxvt*boldFont:        xft:Monospace:pixelsize=14
+! URxvt*italicFont:      xft:Monospace:italic:autohint=true:pixelsize=14
+! URxvt*boldItalicFont:  xft:Monospace:bold:italic:autohint=true:pixelsize=14
 URxvt*letterSpace: -1
 URxvt.scrollBar: false
 ! Fade window when not focused
@@ -15,7 +24,7 @@ URxvt.saveLines: 65535
 URxvt.depth: 32
 URxvt*cursorUnderline: true
 Rxvt*cursorBlink: true
-Rxvt*visualBell: true
+!Rxvt*visualBell: true
 URxvt*termName: rxvt-unicode-256color
 !
 ! Color Scheme copied from a website.  Will do for now
@@ -73,14 +82,11 @@ urxvt*color15:    #e2e2e2
 
 
 !-- Xft settings -- !
-!"Xft.dpi:        96
-!"Xft.antialias:  true
-!"Xft.rgba:       rgb
-!"Xft.hinting:    true
-!Xft.hintstyle:  hintfull
-! -- Fonts -- !
-!"URxvt.font:xft:Monospace:pixelsize=10
-!"URxvt.boldfont:xft:Monospace-Bold:pixelsize=10
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintfull
 
 
 

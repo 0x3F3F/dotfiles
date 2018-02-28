@@ -112,13 +112,10 @@ else
 	#Stop gvim errors on startup
 	alias gvim="gvim 2>/dev/null"
 
-	alias tw="/usr/local/bin/turses"
 	alias yt="/home/iain/bin/ytDispSubs.py"
-	alias kb="/usr/bin/onboard"
-	alias kp="kpcli.pl --kdb=/media/iain/Data/SysVar/cache/xxxxxxxxx"
 	alias gm="cd /media/iain"
 	alias gp="cd /media/iain/Data/Archived\ Docs/Shares/Portfolio"
-	alias rr="/usr/local/bin/ranger"
+	alias rr="/usr/bin/ranger"
 	alias c="/usr/bin/cmus"
 fi
 

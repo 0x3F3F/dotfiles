@@ -24,7 +24,7 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -209,8 +209,6 @@ exec --no-startup-id udiskie --tray
 
 #Start with USB keyboard which is US
 exec --no-startup-id "setxkbmap -model pc105 -layout us"
-#Laptop keyboard fecked.  Start visual keyboard in case issues with bluetooth one
-exec --no-startup-id onboard
 
 # Start other programs
 exec --no-startup-id /usr/bin/firefox

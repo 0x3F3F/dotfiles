@@ -1,5 +1,9 @@
+# Switched to neomutt which I had to build muself:
+# Clone from git then:
+# ./configure --disable-doc --gpgme --gnutls --ssl --tokyocabinet
+# make / make install
+#
 # Paths ----------------------------------------------------------------------
-set alias_file       = ~/.mutt/alias         # where to store aliases
 set header_cache     = ~/.mutt/cache/headers # where to store headers
 set message_cachedir = ~/.mutt/cache/bodies  # where to store bodies
 set certificate_file = ~/.mutt/certificates  # where to store certs
@@ -7,26 +11,42 @@ set mailcap_path     = ~/.mutt/mailcap       # entries for filetypes
 set tmpdir           = ~/.mutt/temp          # where to keep temp files
 set signature        = ~/.mutt/.sig           # my signature file
 
-set imap_user 		= "@gmail.com"
-set imap_pass 		= ""
-set folder   		= "imaps://imap.gmail.com"               		# mailbox location
-set spoolfile		= "imaps://imap.gmail.com/INBOX"      			# This is the default start directory	    
-#set record			= "imaps://imap.gmail.com/[Gmail]/Sent Mail"	# Gmail handles this
+# Main mail setup -----------------------------------------------------------
+
+# Store seoparately in 400 file. Config with GPG
+source ~/.mutt/P455W0RD
+
+#ck Account Info
+set from			="iainbenson@gmail.com"
+set realname		="Iain"
+set imap_user 		= "iainbenson@gmail.com"
+#set imap_pass 		= Sourced from separate file
+set smtp_url		="smtp://$imap_user@smtp.gmail.com:587"
+#set smtp_pass 		= Sourced from separate file
+
+# Folders Setup
+# Sidebar issue as documented here: https://groups.google.com/forum/#!topic/linux.debian.bugs.dist/kN_CHw8mkLA
+# Wasted too much time on it, might install neomutt instead.
+set folder   		= "imaps://imap.gmail.com/"    	# Sidebar only displays last 4 chars of this.  Which is rubbish.
+set spoolfile		= "+INBOX"
 set postponed		= "imaps://imap.gmail.com/[Gmail]/Drafts"
-#set mbox			= "imaps://imap.gmail.com/[Gmail]/All Mail"      #Get prompted to archive when exit mutt
+mailboxes 			= "+INBOX" "+[Gmail]/Sent Mail"  "+[Gmail]/All Mail" "+[Gmail]/Drafts" "+[Gmail]/Spam"
+
+# Other Connection details
+set ssl_starttls 	= yes
+set ssl_force_tls 	= yes
+set mail_check 		= 600		# Time in seconds
+set imap_keepalive 	= 900
 
 
-# Basic Options ----------------------------------------------------------------
+
+# Mutt  Options ----------------------------------------------------------------
 #
 set realname='Iain Benson'
-#set mbox_type = Maildir  # mailbox type
-set mask="!^\\.[^.]"
-set send_charset="utf-8"
 
 # Assorted other options
 set wait_key = no        # shut up, mutt
 set move = no
-set imap_keepalive = 900
 set delete               # don't ask, just do
 unset confirmappend      # don't ask, just do!
 set quit                 # don't ask, just do!!
@@ -46,9 +66,9 @@ set sort_aux=last-date     		 # date of the last message in thread
 # Note that need to inclde gg here as  if done in mail functions then ends up at bottom
 # See ~/vim/mail for mail functions called also see /etc/vim/vimrc.local
 set edit_headers
-#set editor='vim + -c "set spell spelllang=en_gb" + -c "normal gg" '
+set editor='vim + -c "set spell spelllang=en_gb" + -c "normal gg2O" + -c "normal gg" '
 #set editor='vim +/^$ ++1 '
-set editor=vim 
+#set editor=vim 
 
 # Don't ask for stuff when replying
 set include=yes
@@ -73,31 +93,19 @@ set index_format="%Z %d, %-20.20F  %s"
 # When press C to change folders:
 set folder_format="%2C %t %N %8s %d %f"
 
+
 #Color Scheme
 #source ~/.mutt/colors.iain
 #color sidebar_new yellow default	# Mark folders with unread mails in yellow
-source ~/.mutt/solarized/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc 
+#source ~/.mutt/solarized/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc 
+source ~/.mutt/colours/mutt-colors-neonwolf-256.muttrc
+#source ~/.mutt/colours/mutt-colors-solarized-dark-256.muttrc
+#source ~/.mutt/colours/mutt-colors-solarized-light-256.muttrc
+
 
 # Sidebar
 set sidebar_visible = yes
 set sidebar_width = 25
-
-# Mailboxes -------------------------------------------------------------------
-#
-# All Mail wasn't showing up.  NEED TO GO TO GEMAIL SETTINGS->LABELDS and sel Show in IMAP 
-mailboxes = "+[Gmail]/Sent Mail"  "+[Gmail]/All Mail" "+[Gmail]/Drafts" "+[Gmail]/Spam" +Inbox_Hotmail
-#mailboxes =Inbox_Hotmail
-#mailboxes =read_Hotmail
-
-
-# Account Settings ------------------------------------------------------------
-# Handled in accounts folder , called from folder-hook below
-set smtp_url="smtp://$imap_user@smtp.gmail.com:587"
-set smtp_pass="$imap_pass"
-set ssl_starttls = yes
-set ssl_force_tls = yes
-set from="iainbenson@gmail.com"
-set realname="Iain"
 
 
 # Macros -------------------------------------------------------------------
@@ -107,26 +115,26 @@ macro index,pager cf "<change-folder>?<toggle-mailboxes>" "open a different fold
 
 bind  editor <space> noop
 #bind  index,pager c  mail 		#Compose
-macro index,pager e  "<save-message>=[Gmail]/All Mail<enter><enter>" "Archive conversation"
+macro index,pager e  "<save-message>+[Gmail]/All Mail<enter><enter>" "Archive conversation"
 bind  generic     x  tag-entry		#Select Conversation
 bind  index       x  tag-thread		#Select Conversation
 bind  pager       x  tag-message	#Select Conversation
 bind  index,pager s  flag-message	#Star a message
-macro index,pager +  <save-message>=[Gmail]/Important<enter><enter> "Mark as important"
-macro index,pager !  <save-message>=[Gmail]/Spam<enter><enter> "Report spam"
+macro index,pager +  <save-message>+[Gmail]/Important<enter><enter> "Mark as important"
+macro index,pager !  <save-message>+[Gmail]/Spam<enter><enter> "Report spam"
 bind  index,pager a  group-reply	#Reply all
 bind  index,pager \# delete-thread	#Delete
 bind  index,pager l  copy-message	#Label
 bind  index,pager v  save-message	#Move to
 macro index,pager I  <set-flag>O	"Mark as read"
 macro index,pager U  <clear-flag>O	"Mark as unread"
-macro index,pager ga "<change-folder>=[Gmail]/All Mail<enter>"	"Go to all mail"
-macro index,pager gs "<change-folder>=[Gmail]/Sent Mail<enter>"	"Go to 'Starred'"
-macro index,pager gd <change-folder>=[Gmail]/Drafts<enter>	"Go to 'Drafts'"
+macro index,pager ga "<change-folder>+[Gmail]/All Mail<enter>"	"Go to all mail"
+macro index,pager gs "<change-folder>+[Gmail]/Sent Mail<enter>"	"Go to 'Starred'"
+macro index,pager gd <change-folder>+[Gmail]/Drafts<enter>	"Go to 'Drafts'"
 macro index,pager gl <change-folder>?				"Go to 'Label'"
-macro index,pager gi <change-folder>=INBOX<enter> 		"Go to inbox"
-macro index,pager gt "<change-folder>=[Gmail]/Spam<enter>"	"Go to 'Sent Mail'"
-folder-hook +INBOX 'macro index,pager y "<save-message>=[Gmail]/All Mail<enter><enter>" "Archive conversation"'
+macro index,pager gi <change-folder>+INBOX<enter> 		"Go to inbox"
+macro index,pager gt "<change-folder>+[Gmail]/Spam<enter>"	"Go to 'Sent Mail'"
+folder-hook +INBOX 'macro index,pager y "<save-message>[imaps://imap.gmail.com/[Gmail]/All Mail<enter><enter>" "Archive conversation"'
 
 #  Hooks --------------------------------------------------------------------
 # 
@@ -137,8 +145,8 @@ folder-hook +INBOX 'macro index,pager y "<save-message>=[Gmail]/All Mail<enter><
 #
 
 #folder-hook 	.*Gmail$		source ~/.mutt/accounts/gmail	
-folder-hook 	.*Hotmail$		source ~/.mutt/accounts/hotmail	
-mbox-hook 	Inbox_Hotmail		=read_Hotmail
+#folder-hook 	.*Hotmail$		source ~/.mutt/accounts/hotmail	
+#mbox-hook 	Inbox_Hotmail		=read_Hotmail
 
 # Aliases -----------------------------------------------------------------------------
 #
@@ -162,5 +170,4 @@ source $alias_file
 
 #bind compose p pgp-menu
 #macro compose Y pfy "send mail without GPG"
-
 
