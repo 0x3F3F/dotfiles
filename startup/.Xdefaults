@@ -1,8 +1,26 @@
 ! IRB 
-! Apparently older version of storing X resources.  
-! *IMPORTANT*  If Xresources present then this should be ignored, 
-! xresourcea don't think worked for me
+! Apparently superceeded my Xresources, though mint still usees this.
+! Changes to Xdefaults take effect straight away, Xresources need restart.
 
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!! URXVT SETUP !!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+! Copy/Paste from Clipboard (needs xclip)
+! Perl script in /usr/lib/urxvt/perl/clipboard (symlinked)
+URxvt*keysym.Shift-Control-V: perl:clipboard:paste
+URxvt*iso14755: False
+
+! Clickable links using matcher
+! Can specify regex and diff programs.
+URxvt*urlLauncher: firefox
+URxvt*matcher.button: 1
+
+! Include teh perl extensions we're using
+URxvt*perl-ext-common: default,clipboard,matcher
+
+ 
 ! Stackoverflow recommending adding extra fonts to get all unicode chars.  This worked.
 URxvt.font: xft:Ubuntu Mono:pixelsize=16:antialias=true:hinting=true,\
 			xft:Source Code Pro:pixelsize=14:style=medium:antialias=true,\

@@ -111,7 +111,8 @@ else
 	############ IRB Other Aliases ###############
 	#Stop gvim errors on startup
 	alias gvim="gvim 2>/dev/null"
-
+	alias mp="/home/iain/.local/bin/mpsyt"
+	alias nm="/usr/bin/neomutt"
 	alias yt="/home/iain/bin/ytDispSubs.py"
 	alias gm="cd /media/iain"
 	alias gp="cd /media/iain/Data/Archived\ Docs/Shares/Portfolio"

@@ -18,9 +18,8 @@ fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
-    PATH="$PATH:$HOME/bin:$HOME/bin/i3:$HOME/bin/LaunchProgs:$HOME/bin/NoAutoBackup:$HOME/scripts"
+    PATH="$PATH:$HOME/bin:$HOME/bin/i3:$HOME/bin/LaunchProgs:$HOME/bin/NoAutoBackup:$HOME/scripts:$HOME/.local/bin"
 fi
-
 
 #set default editor to gvim.  hide random errors.
 EDITOR="vim"
