@@ -88,11 +88,11 @@ bindsym $mod+a focus parent
 
 # switch to workspace
 # I've adden number in here, delete this from each line of probs
-bindsym $mod+1 workspace number 1
-bindsym $mod+2 workspace number 2
-bindsym $mod+3 workspace number 3
-bindsym $mod+4 workspace number 4
-bindsym $mod+5 workspace number 5:PDFs
+bindsym $mod+1 workspace number 1:Web
+bindsym $mod+2 workspace number 2:MailMusic
+bindsym $mod+3 workspace number 3:Bash
+bindsym $mod+4 workspace number 4:PDFs
+bindsym $mod+5 workspace number 5:Bash
 bindsym $mod+6 workspace number 6:Port
 bindsym $mod+7 workspace number 7:Anki
 bindsym $mod+8 workspace number 8:pWeb
@@ -100,11 +100,11 @@ bindsym $mod+9 workspace number 9
 bindsym $mod+0 workspace number 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number 1
-bindsym $mod+Shift+2 move container to workspace number 2
-bindsym $mod+Shift+3 move container to workspace number 3
-bindsym $mod+Shift+4 move container to workspace number 4
-bindsym $mod+Shift+5 move container to workspace number 5:PDFs
+bindsym $mod+Shift+1 move container to workspace number 1:Web
+bindsym $mod+Shift+2 move container to workspace number 2:MailMusic
+bindsym $mod+Shift+3 move container to workspace number 3:Bash
+bindsym $mod+Shift+4 move container to workspace number 4:PDFs
+bindsym $mod+Shift+5 move container to workspace number 5:Bash
 bindsym $mod+Shift+6 move container to workspace number 6:Port
 bindsym $mod+Shift+7 move container to workspace number 7:Anki
 bindsym $mod+Shift+8 move container to workspace number 8:pWeb
@@ -151,13 +151,19 @@ bar {
 }
 
 ######################## IRB Changes ##########################################
+
+# Remove titlebar
 #new_window 1pixel
 #new_float 1pixel
 hide_edge_borders vertical
 
 #Toggle workspace
 workspace_auto_back_and_forth yes
- 
+
+# Cycle through active workspaces
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
 #Set background image
 exec --no-startup-id feh --bg-scale /usr/share/backgrounds/linuxmint-sarah/bartosova_aurora.jpg 
 
@@ -182,7 +188,7 @@ for_window [class="Pavucontrol"] floating enable
 
 # ASSIGN WORKSPACES TO SPECIFIC PROGRAMS
 # Start from 5 as unlikely to be used after that, keep 1-4 Ad Hoc
-assign [class="MuPDF"] 5:PDFs
+assign [class="MuPDF"] 4:PDFs
 for_window [class="MuPDF"] focus
 assign [class="LibreOffice"] 6:Port
 for_window [class="LibreOffice"] focus
@@ -198,9 +204,6 @@ for_window [title=".*\(Private Browsing\).*"] focus
 
 
 
-# layouts
-exec --no-startup-id "i3-msg 'workspace 1; append_layout /home/iain/.config/i3/workspace-1.json'"
-
 # Startup Applets
 exec --no-startup-id nm-applet
 exec --no-startup-id pa-applet
@@ -208,10 +211,32 @@ exec --no-startup-id pa-applet
 exec --no-startup-id udiskie --tray 
 
 #Start with USB keyboard which is US
-exec --no-startup-id "setxkbmap -model pc105 -layout us"
+#exec --no-startup-id "setxkbmap -model pc105 -layout us"
+# Difficulty in starting in .profile/.Xdefaults.  Concluded does run but gets ovweritten.  So run here.
+exec --no-startup-id "xmodmap ~/.Xmodmap"
 
-# Start other programs
-exec --no-startup-id /usr/bin/firefox
+# Start other programs, combine with layouts.  
+# Note don't need to specify workspace as json layouts should swallow corect prog
+#
+# After much experimentation, it appears that need to:
+# 1) USe name rather than title
+# 2) Give every terminal a name, otherwise start openeing in random places.
+# https://www.reddit.com/r/i3wm/comments/655mey/how_to_make_programs_execute_automatically_on/
+exec --no-startup-id "i3-msg 'workspace 2:MailMusic; append_layout /home/iain/.config/i3/workspace-2.json'"
+exec --no-startup-id /usr/bin/urxvt -name "mutt" -e bash -c 'neomutt; bash -i'
+exec --no-startup-id /usr/bin/urxvt -name "cmus" -e bash -c 'cmus; bash -i'
+
+# Following work BUT look ugly as evedently .Xdefaults settings not read /applied.  Maybe add a delay?
+# bashrc appears to ahve worked so functional, but I'll just live with hardship of pressing win-enter .
+#exec --no-startup-id "i3-msg 'workspace 3:Bash; append_layout /home/iain/.config/i3/workspace-3.json'"
+#exec --no-startup-id /usr/bin/urxvt -name "3bash" -e bash -c 'bash -i'
+#exec --no-startup-id "i3-msg 'workspace 5:Bash; append_layout /home/iain/.config/i3/workspace-5.json'"
+#exec --no-startup-id /usr/bin/urxvt -name "5bash" -e bash -c 'bash -i'
+
+exec --no-startup-id "i3-msg 'workspace 1:Web; append_layout /home/iain/.config/i3/workspace-1.json'"
+exec --no-startup-id /usr/bin/urxvt -name "Portfolio" -e bash -c "/home/iain/scripts/portfolio.py;bash -i"
+exec --no-startup-id /usr/bin/firefox 
+
 
 # Shutdown script from https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/ 
 set $mode_system System (l) lock, (e) Logout, (s) Shutdown, (h) Hibernate, (r) Reboot, (Shift+s) Suspend
