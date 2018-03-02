@@ -65,14 +65,16 @@ set sort_aux=last-date     		 # date of the last message in thread
 
 # Note that need to inclde gg here as  if done in mail functions then ends up at bottom
 # See ~/vim/mail for mail functions called also see /etc/vim/vimrc.local
-set edit_headers
 set editor='vim + -c "set spell spelllang=en_gb" + -c "normal gg2O" + -c "normal gg" '
 #set editor='vim +/^$ ++1 '
 #set editor=vim 
 
 # Don't ask for stuff when replying
 set include=yes
-set fast_reply
+#set edit_headers
+set fast_reply = yes
+set use_from = yes
+
 
 # Nice Word Wrapping
 set smart_wrap
@@ -81,7 +83,7 @@ set smart_wrap
 unset markers
 
 # Prefer text emails
-#alternative_order text/plain text/html
+alternative_order text/plain text/html
 auto_view text/html
 
 # Formatting ---------------------------------------------------------------
@@ -105,36 +107,45 @@ source ~/.mutt/colours/mutt-colors-neonwolf-256.muttrc
 
 # Sidebar
 set sidebar_visible = yes
-set sidebar_width = 25
-
+set sidebar_width = 20
+set sidebar_format = "%B%?F? ?%* %?S?%S?"
+set mail_check_stats		#Forces check on total number of emails
+# Shorten mailbox names`, delete up to last /
+set sidebar_short_path 
+set sidebar_delim_chars="/"
+# Indent folders whose names we've shortened
+set sidebar_folder_indent
+set sidebar_indent_string="  "
 
 # Macros -------------------------------------------------------------------
 #
 #
-macro index,pager cf "<change-folder>?<toggle-mailboxes>" "open a different folder"
+#macro index,pager cf "<change-folder>?<toggle-mailboxes>" "open a different folder"
 
 bind  editor <space> noop
 #bind  index,pager c  mail 		#Compose
-macro index,pager e  "<save-message>+[Gmail]/All Mail<enter><enter>" "Archive conversation"
-bind  generic     x  tag-entry		#Select Conversation
-bind  index       x  tag-thread		#Select Conversation
-bind  pager       x  tag-message	#Select Conversation
-bind  index,pager s  flag-message	#Star a message
-macro index,pager +  <save-message>+[Gmail]/Important<enter><enter> "Mark as important"
+#macro index,pager e  "<save-message>+[Gmail]/All Mail<enter><enter>" "Archive conversation"
+#bind  generic     x  tag-entry		#Select Conversation
+#bind  index       x  tag-thread		#Select Conversation
+#bind  pager       x  tag-message	#Select Conversation
+#bind  index,pager s  flag-message	#Star a message
+#macro index,pager +  <save-message>+[Gmail]/Important<enter><enter> "Mark as important"
 macro index,pager !  <save-message>+[Gmail]/Spam<enter><enter> "Report spam"
 bind  index,pager a  group-reply	#Reply all
-bind  index,pager \# delete-thread	#Delete
-bind  index,pager l  copy-message	#Label
-bind  index,pager v  save-message	#Move to
-macro index,pager I  <set-flag>O	"Mark as read"
-macro index,pager U  <clear-flag>O	"Mark as unread"
+#bind  index,pager \# delete-thread	#Delete
+#bind  index,pager l  copy-message	#Label
+bind  pager       v  view-attachement 
+#macro index,pager I  <set-flag>O	"Mark as read"
+#macro index,pager U  <clear-flag>O	"Mark as unread"
+bind index,pager g noop
 macro index,pager ga "<change-folder>+[Gmail]/All Mail<enter>"	"Go to all mail"
-macro index,pager gs "<change-folder>+[Gmail]/Sent Mail<enter>"	"Go to 'Starred'"
+macro index,pager gs "<change-folder>+[Gmail]/Sent Mail<enter>"	"Go to Sent Mail'"
 macro index,pager gd <change-folder>+[Gmail]/Drafts<enter>	"Go to 'Drafts'"
 macro index,pager gl <change-folder>?				"Go to 'Label'"
 macro index,pager gi <change-folder>+INBOX<enter> 		"Go to inbox"
-macro index,pager gt "<change-folder>+[Gmail]/Spam<enter>"	"Go to 'Sent Mail'"
-folder-hook +INBOX 'macro index,pager y "<save-message>[imaps://imap.gmail.com/[Gmail]/All Mail<enter><enter>" "Archive conversation"'
+macro index,pager gt "<change-folder>+[Gmail]/Spam<enter>"	"Go to 'Spam'"
+
+macro index,pager \cB ": unset wait_key; set pipe_decode\n|w3m\n: set wait_key; unset pipe_decode\n" "call w3m to extract URLs out of a message"
 
 #  Hooks --------------------------------------------------------------------
 # 
