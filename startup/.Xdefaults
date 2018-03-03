@@ -7,20 +7,32 @@
 !!!!!! URXVT SETUP !!!!!!!!!!!!!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-! Copy/Paste from Clipboard (needs xclip)
-! Perl script in /usr/lib/urxvt/perl/clipboard (symlinked)
-URxvt*keysym.Shift-Control-V: perl:clipboard:paste
-URxvt*iso14755: False
+! Include teh perl extensions we're using
+URxvt*perl-ext-common: default,clipboard,matcher,keyboard-select
+
+
+! Copy/Paste from Clipboard 
+! MY Clipboard perl script was missing, so copied the urxvt-perls one in, which was the default.
+! Sync the Clipboard with th e primary
+URxvt.clipboard.autocopy: true
 
 ! Clickable links using matcher
 ! Can specify regex and diff programs.
 URxvt*urlLauncher: firefox
 URxvt*matcher.button: 1
-
-! Include teh perl extensions we're using
-URxvt*perl-ext-common: default,clipboard,matcher
-
  
+! Use vim style bindings for selections (not default need to instal keyboard-select)
+URxvt.keysym.Control-Shift-Escape: perl:keyboard-select:activate
+URxvt.keysym.Control-Shift-s: perl:keyboard-select:search
+
+
+! Disables auto scrolling when go back in buffer
+URxvt.scrollTtyOutput: false
+URxvt.scrollWithBuffer: true
+URxvt.scrollTtyKeypress: true
+URxvt.saveLines: 65535
+
+
 ! Stackoverflow recommending adding extra fonts to get all unicode chars.  This worked.
 URxvt.font: xft:Ubuntu Mono:pixelsize=16:antialias=true:hinting=true,\
 			xft:Source Code Pro:pixelsize=14:style=medium:antialias=true,\
@@ -38,7 +50,6 @@ URxvt*letterSpace: -1
 URxvt.scrollBar: false
 ! Fade window when not focused
 URxvt*fading: 60
-URxvt.saveLines: 65535
 URxvt.depth: 32
 URxvt*cursorUnderline: true
 Rxvt*cursorBlink: true

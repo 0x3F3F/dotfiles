@@ -153,7 +153,7 @@ bar {
 ######################## IRB Changes ##########################################
 
 # Remove titlebar
-#new_window 1pixel
+new_window 1pixel
 #new_float 1pixel
 hide_edge_borders vertical
 

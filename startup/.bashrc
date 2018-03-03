@@ -100,6 +100,7 @@ fi
 if [ "$HOSTNAME" = raspberrypi ] ; then
 	########## IRB Pi Specifig Aliases ###########
 	#Move to separate file as below if gets big list
+	alias h=history
 	alias tr='transmission-remote'
 	alias tc='transmission-remote-cli'
 	alias gm='cd /media/wdhd'
@@ -110,10 +111,11 @@ if [ "$HOSTNAME" = raspberrypi ] ; then
 else
 	############ IRB Other Aliases ###############
 	#Stop gvim errors on startup
+	alias h=history
 	alias gvim="gvim 2>/dev/null"
 	alias mp="/home/iain/.local/bin/mpsyt"
 	alias nm="/usr/bin/neomutt"
-	alias yt="/home/iain/bin/ytDispSubs.py"
+	#alias yt='mpv --really-quiet  --ytdl-format="bestvideo[height<=?720][vcodec!=vp9]+bestaudio/best"'
 	alias gm="cd /media/iain"
 	alias gp="cd /media/iain/Data/Archived\ Docs/Shares/Portfolio"
 	alias rr="/usr/bin/ranger"
