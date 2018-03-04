@@ -126,6 +126,9 @@ else
 	alias gp="cd /media/iain/Data/Archived\ Docs/Shares/Portfolio"
 	alias rr="/usr/bin/ranger"
 	alias c="/usr/bin/cmus"
+
+	# Hack to set cursor style to i beam in urxvt
+	echo -e "\033[5 q";clear
 fi
 
 weather () { curl wttr.in/"$@"; }

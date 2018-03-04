@@ -51,18 +51,23 @@ URxvt.scrollBar: false
 ! Fade window when not focused
 URxvt*fading: 60
 URxvt.depth: 32
-URxvt*cursorUnderline: true
-Rxvt*cursorBlink: true
+! Set to blank fixed a bug in vim
+URxvt*cursorColor:
+URxvt*cursorBlink: true
 !Rxvt*visualBell: true
 URxvt*termName: rxvt-unicode-256color
-
+!  Desipte ibeam not being implemented in urxvt do echo -e "\033[5 q" in bashrc
+!  There appears to have been a patch that must have been applied
+!  https://github.com/AguirreIF/urxvt-patchs
+!  HAckey, but set this in bashrc.
+!URxvt*cursorUnderline: true
 
 
 ! Color Scheme 
 ! Superceeded by base16 (loaded in bashrc) BUT....
 ! Terminal progs loaded at startup via urxvt call arn't reading base16 and getting config from here.
 ! Think this is as either (i) There is no terminal prompt OR (ii) bashrc not ran yet.
-! Keep colorscheme in place, or get white terminal for mutt / cmus ran at startup. 
+! Keep colorscheme in place, get white terminal for mutt / cmus ran at startup. 
 URxvt*background:#101010
 URxvt*foreground:#f2f2f2
 urxvt*color0:    #6c6c6c
