@@ -201,7 +201,11 @@ else
 	set t_Co=256
 	colorscheme base16-ocean
 
-	set cursorline							
+	" urxvt recognises [5 q escape sequence for blinking I Beam!
+	" Think patch was applied. On terminal can do echo -e '\033[5 q'
+	let &t_SI = "\<esc>[5 q"
+	let &t_SR = "\<esc>[3 q"
+	let &t_EI = "\<esc>[2 q"							
 endif
 
 
@@ -226,7 +230,7 @@ if has("autocmd")
   autocmd BufEnter * lcd %:p:h
 
   " Iains File Specific setings.  Use setlocal as otherwise it affects all buffers 
-  augroup mysettings
+  augroup myFileSettings
     autocmd BufEnter,BufRead *.xslt,*.xml setlocal tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
     autocmd BufEnter,BufRead *.html,*.xhtml setlocal omnifunc=htmlcomplete#CompleteTags tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
     autocmd BufEnter,BufRead *.css setlocal omnifunc=csscomplete#CompleteCSS tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
@@ -273,6 +277,27 @@ if has("autocmd")
     \ if line("'\"") > 0 && line("'\"") <= line("$") | 
     \   exe "normal g`\"" | 
     \ endif 
+
+  if ! has('gui_running')
+    
+	" Delay when leave insert mode as waits for another key in case mappings defained
+	" ttimeout fixes the Escape issue.  timeoutlen=0 fixed delay when typing 'O'
+	" Was causing funny issues whe pressing escape, inserting eacpe char.  OK now..
+	set ttimeoutlen=10
+    augroup FastEscape
+      autocmd!
+      au InsertEnter * set timeoutlen=0
+      au InsertLeave * set timeoutlen=1000
+    augroup END
+
+	augroup myCmds
+		au!
+		" Set initial cursor shape & revert to Terminal shape
+		autocmd VimEnter * silent !echo -ne "\e[2 q"
+		autocmd VimLeave * silent !echo -ne "\e[5 q"
+	augroup END
+
+  endif
 
 endif 
 
