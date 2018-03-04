@@ -109,6 +109,12 @@ if [ "$HOSTNAME" = raspberrypi ] ; then
 	alias rr="/usr/bin/ranger"
 	alias rt="/usr/bin/ranger /media/wdhd/FilmsTV/TempQueue"
 else
+
+	# Base16 color scheme as https://github.com/chriskempson/base16-shell
+	# Type base16_<tab> to see all possibilities.  Can easily switch theme.
+	BASE16_SHELL=$HOME/.config/base16-shell/
+	[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
 	############ IRB Other Aliases ###############
 	#Stop gvim errors on startup
 	alias h=history

@@ -213,30 +213,28 @@ exec --no-startup-id udiskie --tray
 #Start with USB keyboard which is US
 #exec --no-startup-id "setxkbmap -model pc105 -layout us"
 # Difficulty in starting in .profile/.Xdefaults.  Concluded does run but gets ovweritten.  So run here.
-exec --no-startup-id "xmodmap ~/.Xmodmap"
+exec --no-startup-id "/home/iain/bin/i3/DelayedXmodmap.sh &"
 
 # Start other programs, combine with layouts.  
 # Note don't need to specify workspace as json layouts should swallow corect prog
-#
 # After much experimentation, it appears that need to:
 # 1) USe name rather than title
 # 2) Give every terminal a name, otherwise start openeing in random places.
 # https://www.reddit.com/r/i3wm/comments/655mey/how_to_make_programs_execute_automatically_on/
-exec --no-startup-id "i3-msg 'workspace 2:MailMusic; append_layout /home/iain/.config/i3/workspace-2.json'"
-exec --no-startup-id /usr/bin/urxvt -name "mutt" -e bash -c 'neomutt; bash -i'
-exec --no-startup-id /usr/bin/urxvt -name "cmus" -e bash -c 'cmus; bash -i'
 
-# Following work BUT look ugly as evedently .Xdefaults settings not read /applied.  Maybe add a delay?
-# bashrc appears to ahve worked so functional, but I'll just live with hardship of pressing win-enter .
-#exec --no-startup-id "i3-msg 'workspace 3:Bash; append_layout /home/iain/.config/i3/workspace-3.json'"
-#exec --no-startup-id /usr/bin/urxvt -name "3bash" -e bash -c 'bash -i'
-#exec --no-startup-id "i3-msg 'workspace 5:Bash; append_layout /home/iain/.config/i3/workspace-5.json'"
-#exec --no-startup-id /usr/bin/urxvt -name "5bash" -e bash -c 'bash -i'
-
+# Load Workspace files
 exec --no-startup-id "i3-msg 'workspace 1:Web; append_layout /home/iain/.config/i3/workspace-1.json'"
-exec --no-startup-id /usr/bin/urxvt -name "Portfolio" -e bash -c "/home/iain/scripts/portfolio.py;bash -i"
-exec --no-startup-id /usr/bin/firefox 
+exec --no-startup-id "i3-msg 'workspace 2:MailMusic; append_layout /home/iain/.config/i3/workspace-2.json'"
 
+# Start Programs
+# Note on urxvt terminal progs, they're not picking up base16 color scheme
+# Think this is as either (i) bashrc not ran OR (ii) Thre is no terminal prompt
+# I'll instead keep come colour definitions in .Xdefaults
+# After progfram terminated the ';bash -i' loads new terminal that does pick up base16
+exec  --no-startup-id "/usr/bin/urxvt -name 'mutt' -e bash -c 'neomutt; bash -i'"
+exec  --no-startup-id "/usr/bin/urxvt -name 'cmus' -e bash -c 'cmus; bash -i'"
+exec --no-startup-id "/usr/bin/urxvt -name 'Portfolio' -e bash -c '/home/iain/scripts/portfolio.py;bash -i'"
+exec --no-startup-id /usr/bin/firefox 
 
 # Shutdown script from https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/ 
 set $mode_system System (l) lock, (e) Logout, (s) Shutdown, (h) Hibernate, (r) Reboot, (Shift+s) Suspend

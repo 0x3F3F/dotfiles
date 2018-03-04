@@ -20,12 +20,13 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'bling/vim-airline'
 Plugin 'sjl/gundo.vim'
+Plugin 'vimwiki/vimwiki'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'chriskempson/base16-vim'
 call vundle#end()
-
 filetype plugin indent on
 syntax on
 
@@ -175,9 +176,9 @@ set incsearch
 
 if has('gui_running')
 	
-	set t_Co=16
-	colorscheme desert
-	"colorscheme solarized
+	set t_Co=256
+	let base16colorspace=256  " Access colors present in 256 colorspace
+	colorscheme base16-default-dark
 
 	set background=dark
 	" Highlight Line on current cursor AFTER colorscheme
@@ -192,10 +193,16 @@ if has('gui_running')
 		set guifont=Consolas:h10:cANSI
 	endif
 else
-	set t_Co=16
-	colorscheme desert
-endif
+	
+	" Comment in issue stating vim coloschemes only work in gvim
+	" For terminal need to set via shell.  
+	" Not clear as still need to set colorscheme
+	let base16colorspace=256  " Access colors present in 256 colorspace
+	set t_Co=256
+	colorscheme base16-ocean
 
+	set cursorline							
+endif
 
 
 
@@ -230,7 +237,7 @@ if has("autocmd")
 	
 	"Vimwiki files
 	autocmd BufEnter,BufRead *.wiki,*.md setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab 
-	autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags
+	autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags syntax=pandoc
    
     "C type files
     autocmd BufEnter,BufRead *.c,*.cpp,*.cs,*.java setlocal omnifunc=ccomplete#CompleteCpp tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab cinwords=if,else,for,while,try,except,finally,def,class
@@ -302,8 +309,8 @@ let g:gundo_width=90
 
 " Location of VimWiki files, launch with ,ww
 let g:vimwiki_ext2syntax = {'.md':'markdown','.markdown':'markdown','.mdown':'markdown'}
-"let g:vimwiki_list = [{'path': '$HOME/Documents/Notes'}]
-let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext':'.md'}]
+let g:vimwiki_list = [{'path': '$HOME/Documents/Notes','syntax':'markdown', 'ext':'.md'}]
+"let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext':'.md'}]
 "
 " Syntasic
 "let g:syntastic_always_populate_loc_list = 1
