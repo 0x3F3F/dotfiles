@@ -13,8 +13,8 @@ set signature        = ~/.mutt/.sig           # my signature file
 
 # Main mail setup -----------------------------------------------------------
 
-# Store seoparately in 400 file. Config with GPG
-source ~/.mutt/P455W0RD
+# Store seoparately in 400 file. Config with GPG.  Start with so ignored by ripgrep.
+source ~/.mutt/.P455W0RD.hide
 
 #ck Account Info
 set from			="iainbenson@gmail.com"
@@ -47,6 +47,8 @@ set realname='Iain Benson'
 # Assorted other options
 set wait_key = no        # shut up, mutt
 set move = no
+#set copy = no			# Don't copy sent mail to sent-mail folder (~)
+set record="~/.mutt/sent"	# Record sent mail here instead of home. Not sure anout setting copy to no
 set delete               # don't ask, just do
 unset confirmappend      # don't ask, just do!
 set quit                 # don't ask, just do!!
@@ -66,8 +68,6 @@ set sort_aux=last-date     		 # date of the last message in thread
 # Note that need to inclde gg here as  if done in mail functions then ends up at bottom
 # See ~/vim/mail for mail functions called also see /etc/vim/vimrc.local
 set editor='vim + -c "set spell spelllang=en_gb" + -c "normal gg2O" + -c "normal gg" '
-#set editor='vim +/^$ ++1 '
-#set editor=vim 
 
 # Don't ask for stuff when replying
 set include=yes

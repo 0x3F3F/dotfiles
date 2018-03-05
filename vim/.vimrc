@@ -45,7 +45,7 @@ set showcmd
 set ruler               
 set title               
 set wildmenu            
-set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn
+set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,*.svn,*/.git/*,*.jpg,*.bmp,*.gif,*.png,*.jpeg,*.mp3,*.avi
 set laststatus=2       
 " show matching bracket for 0.2 seconds:
 set matchtime=2         
@@ -194,6 +194,12 @@ if has('gui_running')
 	endif
 else
 	
+	" urxvt recognises [5 q escape sequence for blinking I Beam!
+	" Think patch was applied. On terminal can do echo -e '\033[5 q'
+	let &t_SI = "\<esc>[5 q"
+	let &t_SR = "\<esc>[3 q"
+	let &t_EI = "\<esc>[2 q"							
+
 	" Comment in issue stating vim coloschemes only work in gvim
 	" For terminal need to set via shell.  
 	" Not clear as still need to set colorscheme
@@ -201,11 +207,6 @@ else
 	set t_Co=256
 	colorscheme base16-ocean
 
-	" urxvt recognises [5 q escape sequence for blinking I Beam!
-	" Think patch was applied. On terminal can do echo -e '\033[5 q'
-	let &t_SI = "\<esc>[5 q"
-	let &t_SR = "\<esc>[3 q"
-	let &t_EI = "\<esc>[2 q"							
 endif
 
 
@@ -265,6 +266,9 @@ if has("autocmd")
     autocmd BufEnter,BufRead *.sh setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
 	" autocmd BufWritePost *.sh !chmod +x %
 
+	" hidden files: don't want leakage!
+    autocmd BufEnter,BufRead *.hide setlocal noundofile nobackup noswapfile
+
 	" Treat files as zip files (so can navigate/edit without unzipping)
 	autocmd BufReadCmd *.ods,*.rar,*.jar call zip#Browse(expand("<amatch>"))
   augroup END
@@ -305,14 +309,28 @@ endif
 """"""""""""""""""""""""""" PLUG IN SETTINGS  """""""""""""""""""""""""""""""""""""""""
 
 " Plugin Custom CtrlP settings
-" Setup some default ignores
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
-  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg|flv|pdf|mp3|mp4|torrent|avi)$',
-\}
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = 0
+" Doesn't work if ctrlp_user_command set, similar for wildignore
+"let g:ctrlp_custom_ignore = {
+"  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+"  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg|flv|pdf|mp3|mp4|torrent|avi)$',
+"\}
 
+if executable('rg')
+	"custom_ignore / wildignore don't work when user_command is set, so have to do
+	let g:ctrlp_user_command = "rg --smart-case --hidden --files %s  --iglob '!*\.pdf' 
+				\ --iglob '!*\.mp3' --iglob '!*\.wma'   --iglob '!*\.wav'
+				\ --iglob '!*\.flv' --iglob '!*\.mp4'  --iglob '!*\.avi' 
+				\ --iglob '!*\.jpg'  --iglob '!*\.png' --iglob '!*\.gif' --iglob '!*\.jpeg'
+				\ --iglob '!*\.hide'  --iglob '!*\.db'  --iglob '!*\.zip' 
+	 			\ --iglob '!Music\/*'"
+ 	let g:ctrlp_use_caching = 0			" Using rg, so don't cache
+	let g:ctrlp_working_path_mode = 'ra'
+	let g:ctrlp_switch_buffer = 'et'
+	let g:ctrlp_follow_symlinks=1		" pickup .dotfiles
+	let g:ctrlp_max_files=0 			" No limit
+	let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:40'
+	let g:ctrlp_clear_cache_on_exit=1
+endif  
 
 " delimitMate workaround for Python triple-quotes.
 autocmd FileType python let b:delimitMate_nesting_quotes=['"', '''']
