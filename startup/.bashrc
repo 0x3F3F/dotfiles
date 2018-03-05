@@ -154,5 +154,42 @@ if ! shopt -oq posix; then
   fi
 fi
 
-
+############################### FZF #####################################################
+# USEFULL	vim **<TAB>		Files under current Dir
+# USEFULL	vim ../**<TAB>	Files under parent dir
+# USEFULL 	kill -9 <TAB>		Select process id
+# Setup fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# COMMAND: CTRL-P	Search for files then open in vim
+# DON'T Try to use FZF_CTRL_P_COMMAND, it appears its the daults one to handle this.  I've added ~ so searcxhes from home.
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --smart-case -g "!{.git,node_modules,Music}/*" --iglob "!*.{jpg,png,pdf,mp3,mp4,avi,pyc,hide}"  ~ 2> /dev/null'
+fzf_then_open_in_editor() {
+  local file=$(fzf)
+  # Open the file if it exists
+  if [ -n "$file" ]; then
+    # Use the default editor if it's defined, otherwise Vim
+    ${EDITOR:-vim} "$file"
+  fi
+}
+bind -x '"\C-p": fzf_then_open_in_editor'
+
+# COMMAND CTRL-T	Search for files and then paste path into terminal, incl jpgs etc as not opening
+#					Prob won't use as cd **<tab> does same thing.  NOTE ITS PATHS UNDER CURRENT DIR - don't want to force to home.
+export FZF_CTRL_T_COMMAND='rg --files --no-ignore --hidden --follow --smart-case -g "!{.git,node_modules}/*" 2> /dev/null'
+
+# COMMANDL ALT-C	Search dirs then cd into them use bgs insttead
+# Issue with escape char being inserted if use ~.  Can fix by hacking code and changing %q to %b in __fzf_cd__  in key-bindings.bash
+# Better to fix here by removing it.  Using | in sed as forward slashes in $home. Use 2>/dev/null as was getting Permsn Denied errors.
+# IMPORTANT: Don't use -hidden as it ONLY SHOWS HIDDEN.  Using no flag to see everything.
+export FZF_ALT_C_COMMAND="cd `echo $HOME`; bfs -type d  2>/dev/null | sed \"s|^\.|`echo $HOME`|\""
+
+# Try to preview files.
+# IRB:FOr some reason cant use flags to 'file' in preview call even if wrap in functions.  
+# May come back to. In meantime add specific CTRL_P command as prob don't want binaries included anyway
+#getEncoding () { file -bi "$@" | sed 's/^.*=//g'; }
+#getExt () { echo "$@" | sed 's/^.*\.//g'; }
+export FZF_DEFAULT_OPTS=" --preview '(coderay {} || rougify {} || cat {} || tree -C {} ) 2> /dev/null | head -200' "
+
+#########################################################################################
+
