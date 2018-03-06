@@ -20,13 +20,15 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'bling/vim-airline'
 Plugin 'sjl/gundo.vim'
-Plugin 'vimwiki/vimwiki'
+"Plugin 'vimwiki/vimwiki'
 Plugin 'easymotion/vim-easymotion'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'chriskempson/base16-vim'
+Plugin 'junegunn/fzf.vim'
+Plugin 'Shougo/neocomplete.vim'
 call vundle#end()
+
 filetype plugin indent on
 syntax on
 
@@ -232,7 +234,7 @@ if has("autocmd")
 
   " Iains File Specific setings.  Use setlocal as otherwise it affects all buffers 
   augroup myFileSettings
-    autocmd BufEnter,BufRead *.xslt,*.xml setlocal tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
+    autocmd BufEnter,BufRead *.xslt,*.xml setlocal omnifunc=xmlcomplete#CompleteTags tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
     autocmd BufEnter,BufRead *.html,*.xhtml setlocal omnifunc=htmlcomplete#CompleteTags tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
     autocmd BufEnter,BufRead *.css setlocal omnifunc=csscomplete#CompleteCSS tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
     autocmd BufEnter,BufRead *.js setlocal omnifunc=javascriptcomplete#CompleteJS tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
@@ -241,8 +243,8 @@ if has("autocmd")
 	autocmd BufEnter,BufRead *.txt  setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab textwidth=125 spell spelllang=en_gb
 	
 	"Vimwiki files
-	autocmd BufEnter,BufRead *.wiki,*.md setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab 
-	autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags syntax=pandoc
+	autocmd BufEnter,BufRead *.wiki,*.md setlocal omnifunc=htmlcomplete#CompleteTags filetype=markdown tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab 
+	autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags syntax=markdown
    
     "C type files
     autocmd BufEnter,BufRead *.c,*.cpp,*.cs,*.java setlocal omnifunc=ccomplete#CompleteCpp tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab cinwords=if,else,for,while,try,except,finally,def,class
@@ -308,36 +310,10 @@ endif
 
 """"""""""""""""""""""""""" PLUG IN SETTINGS  """""""""""""""""""""""""""""""""""""""""
 
-" Plugin Custom CtrlP settings
-" Doesn't work if ctrlp_user_command set, similar for wildignore
-"let g:ctrlp_custom_ignore = {
-"  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
-"  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg|flv|pdf|mp3|mp4|torrent|avi)$',
-"\}
-
-if executable('rg')
-	"custom_ignore / wildignore don't work when user_command is set, so have to do
-	let g:ctrlp_user_command = "rg --smart-case --hidden --files %s  --iglob '!*\.pdf' 
-				\ --iglob '!*\.mp3' --iglob '!*\.wma'   --iglob '!*\.wav'
-				\ --iglob '!*\.flv' --iglob '!*\.mp4'  --iglob '!*\.avi' 
-				\ --iglob '!*\.jpg'  --iglob '!*\.png' --iglob '!*\.gif' --iglob '!*\.jpeg'
-				\ --iglob '!*\.hide'  --iglob '!*\.db'  --iglob '!*\.zip' 
-	 			\ --iglob '!Music\/*'"
- 	let g:ctrlp_use_caching = 0			" Using rg, so don't cache
-	let g:ctrlp_working_path_mode = 'ra'
-	let g:ctrlp_switch_buffer = 'et'
-	let g:ctrlp_follow_symlinks=1		" pickup .dotfiles
-	let g:ctrlp_max_files=0 			" No limit
-	let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:40'
-	let g:ctrlp_clear_cache_on_exit=1
-endif  
-
 " delimitMate workaround for Python triple-quotes.
 autocmd FileType python let b:delimitMate_nesting_quotes=['"', '''']
 
 " Plugin Airline settings
-let g:airline_left_sep=''
-let g:airline_right_sep=''
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 set laststatus=2
@@ -353,16 +329,38 @@ let g:gundo_width=90
 " Location of VimWiki files, launch with ,ww
 let g:vimwiki_ext2syntax = {'.md':'markdown','.markdown':'markdown','.mdown':'markdown'}
 let g:vimwiki_list = [{'path': '$HOME/Documents/Notes','syntax':'markdown', 'ext':'.md'}]
-"let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext':'.md'}]
-"
-" Syntasic
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
 
 " Save Screen Position
 let g:screen_size_restore_pos = 1
 
+let g:NERDTreeShowHidden=1
+
+" NeoComplete
+let g:acp_enableAtStartup = 0				
+" Use neocomplete:
+let g:neocomplete#enable_at_startup = 1									
+" Use smartcase:
+let g:neocomplete#enable_smart_case = 1									
+let g:neocomplete#auto_completion_start_length = 4									
+" Set minimum syntax keyword length:
+let g:neocomplete#sources#syntax#min_keyword_length = 3					
+" Define dictionary:
+let g:neocomplete#sources#dictionary#dictionaries = { 'default' : '',}	
+
+if !exists('g:neocomplete#keyword_patterns')
+    " Define keyword:
+    let g:neocomplete#keyword_patterns = {}								
+endif
+
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  " Enable heavy omni completion:
+  let g:neocomplete#sources#omni#input_patterns = {}					
+endif
+" Close the code preview window:
+let g:neocomplete#enable_auto_close_preview = 1							
+" Max list length:
+let g:neocomplete#max_list = 10											
 
 
 """"""""""""""""""""""""""""""""""""" FUNCTIONS """""""""""""""""""""""""""""""""""""""""
@@ -380,14 +378,15 @@ endfunction
 nnoremap <silent> n n:call HLNext(0.1)<cr>
 nnoremap <silent> N N:call HLNext(0.1)<cr>
 
+" Find command using ripgrep with :F  fzf pluging (
+set rtp+=~/.fzf
+let g:rg_command = '
+  \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
+  \ -g "*.{js,json,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf,sh}"
+  \ -g "!{.git,.cache}/*" '
+command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
 
 """"""""""""""""""""""""""""""""""""" MAPPINGS """""""""""""""""""""""""""""""""""""""""
-" paste mode toggle (needed when using autoindent/smartindent)
-map <F10> :set paste<CR>
-map <F11> :set nopaste<CR>
-imap <F10> <C-O>:set paste<CR>
-imap <F11> <nop>
-set pastetoggle=<F11>
 
 " F3: Toggle list (display unprintable characters).
 nnoremap <F3> :set list!<CR>
@@ -406,18 +405,20 @@ nnoremap <leader>/ :nohl<CR>
 nnoremap <leader>ct :call NERDComment(0,"Toggle")<CR>
 vnoremap <leader>ct :call NERDComment(0,"Toggle")<CR>
 nnoremap <leader>n :NERDTreeToggle<CR>
-nnoremap <leader>p :CtrlP<CR>
-nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>u :GundoToggle<CR>
-"silver searcher to grep, defaults to curr dir
-"nnoremap <leader>a :Ag 
+
+" FZF plugin uses uses $FZF_DEFAULT_COMMAND env var (ripgrep)
+" File search with preview
+nnoremap <leader>p :FZF<CR>
+" Find text, with preview (Think using ripgrep)
+nnoremap <leader>f :F 
 
 " Navigation for splits/buffers
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-" This mappiong might not work as conflicts with terminals that have same mapping
+" This mapping might not work as conflicts with terminals that have same mapping
 nmap <C-PageDown> :bprev<CR>
 nmap <C-PageUp> :bnext<CR>
 
@@ -441,6 +442,21 @@ nnoremap <Leader>s :let @a=@" \| let @"=@+ \| let @+=@a<CR>
 
 " Whitespace before paste.  Note ^[ is escape
 let @p='a p'
+
+" Neocomplete - Recommended mappings mapp
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion. Note that shift-tab inserts tab if plumvisible
+" Note also vimwiki uses tab/enter and so this doesn't work.  Now have fzf may uninstall
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
 
 """"""""""""""""""""""""""""""""""""" OTHER  """""""""""""""""""""""""""""""""""""""""
