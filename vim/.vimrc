@@ -209,6 +209,7 @@ else
 	set t_Co=256
 	colorscheme base16-ocean
 
+	set cursorline							
 endif
 
 
@@ -242,10 +243,13 @@ if has("autocmd")
 	"Txt files
 	autocmd BufEnter,BufRead *.txt  setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab textwidth=125 spell spelllang=en_gb
 	
+	"Mutt
+	autocmd BufRead neomutt-* setlocal fo+=aw textwidth=100 spell spelllang=en_gb
+
 	"Vimwiki files
 	autocmd BufEnter,BufRead *.wiki,*.md setlocal omnifunc=htmlcomplete#CompleteTags filetype=markdown tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab 
 	autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags syntax=markdown
-   
+
     "C type files
     autocmd BufEnter,BufRead *.c,*.cpp,*.cs,*.java setlocal omnifunc=ccomplete#CompleteCpp tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab cinwords=if,else,for,while,try,except,finally,def,class
     
@@ -409,7 +413,7 @@ nnoremap <leader>u :GundoToggle<CR>
 
 " FZF plugin uses uses $FZF_DEFAULT_COMMAND env var (ripgrep)
 " File search with preview
-nnoremap <leader>p :FZF<CR>
+nnoremap <C-p> :FZF<CR>
 " Find text, with preview (Think using ripgrep)
 nnoremap <leader>f :F 
 

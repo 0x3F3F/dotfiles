@@ -21,6 +21,9 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$PATH:$HOME/bin:$HOME/bin/i3:$HOME/bin/LaunchProgs:$HOME/bin/NoAutoBackup:$HOME/scripts:$HOME/.local/bin"
 fi
 
+# Swap Alt-Win keys
+test -f /home/iain/.config/xkb/IRBXkeymap && xkbcomp /home/iain/.config/xkb/IRBXkeymap $DISPLAY &> /dev/null
+
 #set default editor to gvim.  hide random errors.
 EDITOR="vim"
 VISUAL=$EDITOR

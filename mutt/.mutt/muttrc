@@ -8,7 +8,7 @@ set header_cache     = ~/.mutt/cache/headers # where to store headers
 set message_cachedir = ~/.mutt/cache/bodies  # where to store bodies
 set certificate_file = ~/.mutt/certificates  # where to store certs
 set mailcap_path     = ~/.mutt/mailcap       # entries for filetypes
-set tmpdir           = ~/.mutt/temp          # where to keep temp files
+#set tmpdir           = ~/.mutt/temp          # where to keep temp files
 set signature        = ~/.mutt/.sig           # my signature file
 
 # Main mail setup -----------------------------------------------------------
@@ -67,7 +67,7 @@ set sort_aux=last-date     		 # date of the last message in thread
 
 # Note that need to inclde gg here as  if done in mail functions then ends up at bottom
 # See ~/vim/mail for mail functions called also see /etc/vim/vimrc.local
-set editor='vim + -c "set spell spelllang=en_gb" + -c "normal gg2O" + -c "normal gg" '
+set editor='vim +  -c "normal gg2O" + -c "normal gg" '
 
 # Don't ask for stuff when replying
 set include=yes
@@ -117,47 +117,8 @@ set sidebar_delim_chars="/"
 set sidebar_folder_indent
 set sidebar_indent_string="  "
 
-# Macros -------------------------------------------------------------------
-#
-#
-#macro index,pager cf "<change-folder>?<toggle-mailboxes>" "open a different folder"
-
-bind  editor <space> noop
-#bind  index,pager c  mail 		#Compose
-#macro index,pager e  "<save-message>+[Gmail]/All Mail<enter><enter>" "Archive conversation"
-#bind  generic     x  tag-entry		#Select Conversation
-#bind  index       x  tag-thread		#Select Conversation
-#bind  pager       x  tag-message	#Select Conversation
-#bind  index,pager s  flag-message	#Star a message
-#macro index,pager +  <save-message>+[Gmail]/Important<enter><enter> "Mark as important"
-macro index,pager !  <save-message>+[Gmail]/Spam<enter><enter> "Report spam"
-bind  index,pager a  group-reply	#Reply all
-#bind  index,pager \# delete-thread	#Delete
-bind  index,pager l  copy-message	#Label
-bind  pager       v  view-attachement 
-#macro index,pager I  <set-flag>O	"Mark as read"
-#macro index,pager U  <clear-flag>O	"Mark as unread"
-bind index,pager g noop
-macro index,pager ga "<change-folder>+[Gmail]/All Mail<enter>"	"Go to all mail"
-macro index,pager gs "<change-folder>+[Gmail]/Sent Mail<enter>"	"Go to Sent Mail'"
-macro index,pager gd <change-folder>+[Gmail]/Drafts<enter>	"Go to 'Drafts'"
-macro index,pager gl <change-folder>?				"Go to 'Label'"
-macro index,pager gi <change-folder>+INBOX<enter> 		"Go to inbox"
-macro index,pager gt "<change-folder>+[Gmail]/Spam<enter>"	"Go to 'Spam'"
-
-macro index,pager \cB ": unset wait_key; set pipe_decode\n|w3m\n: set wait_key; unset pipe_decode\n" "call w3m to extract URLs out of a message"
-
-#  Hooks --------------------------------------------------------------------
-# 
-# Note also account-hooks exist:
-# https://www.df7cb.de/blog/2010/Using_multiple_IMAP_accounts_with_Mutt.html
-# http://www.gavincostello.com/mutt for mbox-hook
-# See this for handelling 2 imap accounts https://pbrisbin.com/posts/two_accounts_in_mutt/
-#
-
-#folder-hook 	.*Gmail$		source ~/.mutt/accounts/gmail	
-#folder-hook 	.*Hotmail$		source ~/.mutt/accounts/hotmail	
-#mbox-hook 	Inbox_Hotmail		=read_Hotmail
+# Told this is essential or sent mails look weird.
+set text_flowed=yes
 
 # Aliases -----------------------------------------------------------------------------
 #
@@ -181,4 +142,110 @@ source $alias_file
 
 #bind compose p pgp-menu
 #macro compose Y pfy "send mail without GPG"
+
+
+#--------------------------------------------------------------------------
+# generic bindings
+#--------------------------------------------------------------------------
+# bind generic L    "bottom-page"       # move to the bottom of the page
+
+
+#--------------------------------------------------------------------------
+# index bindings
+#--------------------------------------------------------------------------
+bind index g noop
+macro index ga "<change-folder>+[Gmail]/All Mail<enter>"	"Go to all mail"
+macro index gs "<change-folder>+[Gmail]/Sent Mail<enter>"	"Go to Sent Mail'"
+macro index gd <change-folder>+[Gmail]/Drafts<enter>		"Go to 'Drafts'"
+macro index gl <change-folder>?								"Go to 'Label'"
+macro index gi <change-folder>+INBOX<enter> 				"Go to inbox"
+macro index gt "<change-folder>+[Gmail]/Spam<enter>"		"Go to 'Spam'"
+macro index !  <save-message>+[Gmail]/Spam<enter><enter> 	"Report spam"
+bind  index a  group-reply									#Reply all
+#bind  index,pager c  mail 		#Compose
+#macro index,pager I  <set-flag>O	"Mark as read"
+#macro index,pager U  <clear-flag>O	"Mark as unread"
+
+
+#--------------------------------------------------------------------------
+# pager bindings
+#--------------------------------------------------------------------------
+bind pager g noop
+macro pager ga "<change-folder>+[Gmail]/All Mail<enter>"	"Go to all mail"
+macro pager gs "<change-folder>+[Gmail]/Sent Mail<enter>"	"Go to Sent Mail'"
+macro pager gd <change-folder>+[Gmail]/Drafts<enter>		"Go to 'Drafts'"
+#macro pager gl <change-folder>?								"Go to 'Label'"
+macro pager gi <change-folder>+INBOX<enter> 				"Go to inbox"
+macro pager gt "<change-folder>+[Gmail]/Spam<enter>"		"Go to 'Spam'"
+#macro pager \cb <pipe-entry>'urlscan'<enter> 				"Ctrl-b to view urls in urlview"
+#bind  pager v  "view-attachements" 							# View attachments
+macro pager !  <save-message>+[Gmail]/Spam<enter><enter> 	"Report spam"
+bind  pager a  group-reply									#Reply all
+
+macro index,pager \cb "set wait_key\ngrep -iPh 'https?://.+?\\s'\nunset wait_key\n" "Show URLs in message"
+
+#--------------------------------------------------------------------------
+# query bindings
+#--------------------------------------------------------------------------
+ bind query a    "create-alias"     # create an alias from a message sender
+ bind query m    "mail"             # compose a new mail message
+ bind query Q    "query"            # query external program for addresses
+ bind query A    "query-append"     # append new query results to current results
+ bind query /    "search"           # search for a regular expression
+ bind query n    "search-next"      # search for next match
+#bind query      "search-opposite"  # search for next match in opposite direction
+ bind query \e/  "search-reverse"   # search backwards for a regular expression
+
+#--------------------------------------------------------------------------
+# attach bindings
+#--------------------------------------------------------------------------
+# Second just saves without location confimation.
+# Note also use trick tosave while viewing in alias 'nm=cd $HOME/Downlaods;/usr/bin/mutt;cd -'
+macro attach W <save-entry><kill-line>/home/iain/Downloads/ 
+macro attach E <save-entry><kill-line>/home/iain/Downloads/<enter>
+
+#--------------------------------------------------------------------------
+# compose bindings
+#--------------------------------------------------------------------------
+# Default bindings seem good
+
+
+
+#--------------------------------------------------------------------------
+# postpone bindings
+#--------------------------------------------------------------------------
+ bind postpone d  "delete-entry"     # delete the current entry
+ bind postpone u  "undelete-entry"   # undelete the current entry
+
+
+#--------------------------------------------------------------------------
+# browser bindings
+#--------------------------------------------------------------------------
+# Default bindings seem good
+
+
+
+#--------------------------------------------------------------------------
+# alias bindings
+#--------------------------------------------------------------------------
+ bind alias /    "search"          # search for a regular expression
+ bind alias n    "search-next"     # search for next match
+ bind alias \e/  "search-reverse"  # search backwards for a regular expression
+
+
+
+#--------------------------------------------------------------------------
+# pgp bindings
+#--------------------------------------------------------------------------
+# Default bindings seem good
+
+
+
+#--------------------------------------------------------------------------
+# editor bindings
+#--------------------------------------------------------------------------
+bind  editor <space> noop
+
+
+
 

@@ -1,0 +1,27 @@
+
+# IRB: More robust mailcap, ripped off from https://github.com/skanev/dotfiles/blob/master/mutt/mailcap
+# Don-t use view-attachement script.  It uses mac commands
+
+# Mut (I think) saves to .mutt/tmp but files then get deleted
+# I'll copy them to the download dir
+application/msword; libreoffice '%s'
+
+# Images
+Image/JPEG;		/usr/bin/gpicview '%s'  
+Image/PNG; 		/usr/bin/gpicview '%s'  
+Image/GIF; 		/usr/bin/gpicview '%s'  
+
+# PDFs
+#Application/PDF; cp %s /home/iain/Downloads/$(basename %s);/usr/bin/mupdf /home/iain/Downloads/$(basename %s)
+Application/PDF; /usr/bin/mupdf  '%s'
+
+# HTML
+#text/html;  w3m -I %{charset} -T text/html; copiousoutput;
+text/html; pandoc -f html -t markdown; copiousoutput; compose=vim %s
+
+# Unidentified files
+application/octet-stream; /home/iain/.mutt/view-attachment.sh %s "-"
+
+# Plain text
+text/plain; vim %s '%s' -; copiousoutput;
+

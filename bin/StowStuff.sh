@@ -33,7 +33,7 @@ echo "Performing Stow operations"
 cd ~/.dotfiles
 #/usr/bin/stow $1 getmail
 /usr/bin/stow $1 i3
-#/usr/bin/stow $1 mutt
+/usr/bin/stow $1 mutt
 #/usr/bin/stow $1 ranger-rpi
 #/usr/bin/stow $1 rawdog
 /usr/bin/stow $1 startup

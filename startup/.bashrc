@@ -163,11 +163,10 @@ fi
 
 # COMMAND: CTRL-P	Search for files then open in vim
 # DON'T Try to use FZF_CTRL_P_COMMAND, it appears its the daults one to handle this.  I've ADDED ~ so searches from home.
-# Experimentation found need double stars before and one after for dir regex.  Think it's rust flavour.
-#export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --smart-case -g "!**/{.git,.vim,Music,.cache,cache,.cpan,.local,firefox}/*"  --iglob "!*.{jpg,png,pdf,mp3,mp4,avi,pyc,hide,exe,dll}"  ~ 2> /dev/null'
+# The ** in dir regex is 'globstar' and refers to 'zero or more directories'.  When set in bash, ls recusevly searches dirs, this is the same.
 RG_EXCLUDE_DIRS=".git,.vim,Music,.cache,cache,.cpan,.local,firefox"
 RG_EXCLUDE_FILES="jpg,png,pdf,mp3,mp4,avi,pyc,hide,exe,dll"
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --smart-case -g "!**/{'$RG_EXCLUDE_DIRS'}/*"  --iglob "!*.{'$RG_EXCLUDE_FILES'}"  ~ 2> /dev/null'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --smart-case -g "!**/{'$RG_EXCLUDE_DIRS'}/"  --iglob "!*.{'$RG_EXCLUDE_FILES'}"  ~ 2> /dev/null'
 fzf_then_open_in_editor() {
   local file=$(fzf)
   # Open the file if it exists
@@ -193,7 +192,7 @@ export FZF_ALT_C_COMMAND="cd `echo $HOME`; bfs -type d  2>/dev/null | sed \"s|^\
 # May come back to. In meantime add specific CTRL_P command as prob don't want binaries included anyway
 #getEncoding () { file -bi "$@" | sed 's/^.*=//g'; }
 #getExt () { echo "$@" | sed 's/^.*\.//g'; }
-export FZF_DEFAULT_OPTS=" --preview '(coderay {} || rougify {} || cat {} || tree -C {} ) 2> /dev/null | head -200' "
+export FZF_DEFAULT_OPTS="--color 'hl:9,hl+:9' --preview '(coderay {} || rougify {} || cat {} || tree -C {} ) 2> /dev/null | head -200' "
 
 #########################################################################################
 
