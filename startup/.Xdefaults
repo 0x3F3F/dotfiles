@@ -53,7 +53,7 @@ URxvt.scrollBar: false
 URxvt*fading: 60
 URxvt.depth: 32
 ! Set to blank fixed a bug in vim
-URxvt*cursorColor:
+URxvt*cursorColor:#f2f2f2
 URxvt*cursorBlink: true
 !Rxvt*visualBell: true
 URxvt*termName: rxvt-unicode-256color
@@ -71,22 +71,22 @@ URxvt*termName: rxvt-unicode-256color
 ! Keep colorscheme in place, get white terminal for mutt / cmus ran at startup. 
 URxvt*background:#101010
 URxvt*foreground:#f2f2f2
-urxvt*color0:    #6c6c6c
-urxvt*color1:    #e9897c
-urxvt*color2:    #b6e77d
-urxvt*color3:    #ecebbe
-urxvt*color4:    #a9cdeb
-urxvt*color5:    #ea96eb
-urxvt*color6:    #c9caec
-urxvt*color7:    #f2f2f2
-urxvt*color8:    #747474
-urxvt*color9:    #f99286
-urxvt*color10:    #c3f786
-urxvt*color11:    #fcfbcc
-urxvt*color12:    #b6defb
-urxvt*color13:    #fba1fb
-urxvt*color14:    #d7d9fc
-urxvt*color15:    #e2e2e2
+URxvt*color0:#6c6c6c
+URxvt*color1:#e9897c
+URxvt*color2:#b6e77d
+URrxvt*color3:#ecebbe
+URxvt*color4:#a9cdeb
+URxvt*color5:#ea96eb
+URxvt*color6:#c9caec
+URxvt*color7:#f2f2f2
+URxvt*color8:#747474
+URxvt*color9:#f99286
+URxvt*color10:#c3f786
+URxvt*color11:#fcfbcc
+URxvt*color12:#b6defb
+URxvt*color13:#fba1fb
+URxvt*color14:#d7d9fc
+URxvt*color15:#e2e2e2
 
 !-- URxvt Settings - default fonts shit so theis helps --!
 !http://www.linuxquestions.org/questions/linux-general-1/urxvt-4175418080/

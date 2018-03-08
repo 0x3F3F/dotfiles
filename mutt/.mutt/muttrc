@@ -37,7 +37,8 @@ set ssl_starttls 	= yes
 set ssl_force_tls 	= yes
 set mail_check 		= 600		# Time in seconds
 set imap_keepalive 	= 900
-
+set read_inc		= 100		# Update counter every..
+set write_inc		= 100
 
 
 # Mutt  Options ----------------------------------------------------------------
@@ -45,42 +46,40 @@ set imap_keepalive 	= 900
 set realname='Iain Benson'
 
 # Assorted other options
-set wait_key = no        # shut up, mutt
+set wait_key = no        	# shut up, mutt
 set move = no
-#set copy = no			# Don't copy sent mail to sent-mail folder (~)
+#set copy = no				# Don't copy sent mail to sent-mail folder (~)
 set record="~/.mutt/sent"	# Record sent mail here instead of home. Not sure anout setting copy to no
-set delete               # don't ask, just do
-unset confirmappend      # don't ask, just do!
-set quit                 # don't ask, just do!!
-unset mark_old           # read/new is good enough for me
-#set beep_new             # bell on new mails
-set pipe_decode          # strip headers and eval mimes when piping
-set thorough_search      # strip headers and eval mimes before searching
+set delete               	# don't ask, just do
+unset confirmappend      	# don't ask, just do!
+set quit                 	# don't ask, just do!!
+unset mark_old           	# read/new is good enough for me
+#set beep_new            	# bell on new mails
+set pipe_decode          	# strip headers and eval mimes when piping
+set thorough_search      	# strip headers and eval mimes before searching
 set sleep_time = 0
-set pager_stop=yes	#PgDn doesnt move to next message
 
 set sort=reverse-last-date
 #set sort = 'threads'
 #set sort_aux = 'reverse-last-date-received'
 set sort_aux=reverse-date-received  	# how to sort subthreads
-set sort_aux=last-date     		 # date of the last message in thread
+set sort_aux=last-date     		 		# date of the last message in thread
 
 # Note that need to inclde gg here as  if done in mail functions then ends up at bottom
 # See ~/vim/mail for mail functions called also see /etc/vim/vimrc.local
 set editor='vim +  -c "normal gg2O" + -c "normal gg" '
 
-# Don't ask for stuff when replying
-set include=yes
-#set edit_headers
-set fast_reply = yes
+
+set include=yes					# Don't ask for stuff when replying
+set fast_reply = yes		
 set use_from = yes
+#set edit_headers Had problems with this as cleared all fields
 
-
-# Nice Word Wrapping
-set smart_wrap
-
-# Stop seeing horrible + signs when lines wrap
-unset markers
+set pager_stop=yes				#PgDn doesnt move to next message
+#set pager_index_lines=15		#View index lines when readig message
+set pager_context=3				#Keep lines when scrolling to next page (message)
+set smart_wrap					# Dont map mid word	
+unset markers					# Stop seeing horrible + signs when lines wrap
 
 # Prefer text emails
 alternative_order text/plain text/html
@@ -91,9 +90,8 @@ auto_view text/html
 
 set date_format="%H:%M %d%b%y"
 set index_format="%Z %d, %-20.20F  %s"
-
-# When press C to change folders:
 set folder_format="%2C %t %N %8s %d %f"
+set text_flowed=yes			# Told this is essential or sent mails look weird.
 
 
 #Color Scheme
@@ -105,20 +103,16 @@ source ~/.mutt/colours/mutt-colors-neonwolf-256.muttrc
 #source ~/.mutt/colours/mutt-colors-solarized-light-256.muttrc
 
 
-# Sidebar
+# Sidebar (neomutt specific)
 set sidebar_visible = yes
 set sidebar_width = 20
 set sidebar_format = "%B%?F? ?%* %?S?%S?"
-set mail_check_stats		#Forces check on total number of emails
-# Shorten mailbox names`, delete up to last /
-set sidebar_short_path 
+set mail_check_stats		# Forces check on total number of emails
+set sidebar_short_path		# Shorten mailbox names`, delete up to last / 
 set sidebar_delim_chars="/"
-# Indent folders whose names we've shortened
-set sidebar_folder_indent
+set sidebar_folder_indent	# Indent folders whose names we've shortened
 set sidebar_indent_string="  "
 
-# Told this is essential or sent mails look weird.
-set text_flowed=yes
 
 # Aliases -----------------------------------------------------------------------------
 #
@@ -147,40 +141,50 @@ source $alias_file
 #--------------------------------------------------------------------------
 # generic bindings
 #--------------------------------------------------------------------------
-# bind generic L    "bottom-page"       # move to the bottom of the page
 
 
 #--------------------------------------------------------------------------
 # index bindings
 #--------------------------------------------------------------------------
-bind index g noop
-macro index ga "<change-folder>+[Gmail]/All Mail<enter>"	"Go to all mail"
-macro index gs "<change-folder>+[Gmail]/Sent Mail<enter>"	"Go to Sent Mail'"
-macro index gd <change-folder>+[Gmail]/Drafts<enter>		"Go to 'Drafts'"
-macro index gl <change-folder>?								"Go to 'Label'"
-macro index gi <change-folder>+INBOX<enter> 				"Go to inbox"
-macro index gt "<change-folder>+[Gmail]/Spam<enter>"		"Go to 'Spam'"
-macro index !  <save-message>+[Gmail]/Spam<enter><enter> 	"Report spam"
-bind  index a  group-reply									#Reply all
-#bind  index,pager c  mail 		#Compose
-#macro index,pager I  <set-flag>O	"Mark as read"
-#macro index,pager U  <clear-flag>O	"Mark as unread"
-
+bind 	index G    bottom-page   							   # Like Vim
+bind	index g		noop
+bind 	index gg   top-page      							 	# Like Vim
+macro 	index ga	"<change-folder>+[Gmail]/All Mail<enter>"	"Go to all mail"
+macro 	index gs	"<change-folder>+[Gmail]/Sent Mail<enter>"	"Go to Sent Mail'"
+macro 	index gd	<change-folder>+[Gmail]/Drafts<enter>		"Go to 'Drafts'"
+macro 	index gl	<change-folder>?							"Go to 'Label'"
+macro 	index gi	<change-folder>+INBOX<enter> 				"Go to inbox"
+macro 	index gt	"<change-folder>+[Gmail]/Spam<enter>"		"Go to 'Spam'"
+#macro 	index !		<save-message>+[Gmail]/Spam<enter><enter> 	"Report spam"
+bind  	index a		group-reply									#Reply all
+bind	index c  	mail	 									#Compose
+#macro	index,pager I  <set-flag>O								"Mark as read"
+#macro	index,pager U  <clear-flag>O							"Mark as unread"
+bind	index d		noop										#unmap delete message		 
+bind	index !		noop		 								#unmap report spam
 
 #--------------------------------------------------------------------------
 # pager bindings
 #--------------------------------------------------------------------------
-bind pager g noop
-macro pager ga "<change-folder>+[Gmail]/All Mail<enter>"	"Go to all mail"
-macro pager gs "<change-folder>+[Gmail]/Sent Mail<enter>"	"Go to Sent Mail'"
-macro pager gd <change-folder>+[Gmail]/Drafts<enter>		"Go to 'Drafts'"
-#macro pager gl <change-folder>?								"Go to 'Label'"
-macro pager gi <change-folder>+INBOX<enter> 				"Go to inbox"
-macro pager gt "<change-folder>+[Gmail]/Spam<enter>"		"Go to 'Spam'"
-#macro pager \cb <pipe-entry>'urlscan'<enter> 				"Ctrl-b to view urls in urlview"
-#bind  pager v  "view-attachements" 							# View attachments
-macro pager !  <save-message>+[Gmail]/Spam<enter><enter> 	"Report spam"
-bind  pager a  group-reply									#Reply all
+bind 	pager G    	bottom    									# Like Vim
+bind 	pager g 	noop
+bind 	pager gg   	top       									# Like Vim
+macro 	pager ga 	"<change-folder>+[Gmail]/All Mail<enter>"	"Go to all mail"
+macro 	pager gs 	"<change-folder>+[Gmail]/Sent Mail<enter>"	"Go to Sent Mail'"
+macro 	pager gd 	<change-folder>+[Gmail]/Drafts<enter>		"Go to 'Drafts'"
+#macro 	pager gl 	<change-folder>?							"Go to 'Label'"
+macro 	pager gi 	<change-folder>+INBOX<enter> 				"Go to inbox"
+macro 	pager gt 	"<change-folder>+[Gmail]/Spam<enter>"		"Go to 'Spam'"
+#macro 	pager \cb 	<pipe-entry>'urlscan'<enter> 				"Ctrl-b to view urls in urlview"
+#bind  	pager v  	"view-attachements" 						# View attachments
+#macro 	pager !  	<save-message>+[Gmail]/Spam<enter><enter> 	"Report spam"
+bind  	pager a  	group-reply									#Reply all
+bind 	pager <up> 	previous-line								#Scroll in message rather than index
+bind 	pager <down> next-line									#Scroll in message rather than index
+bind	index d		noop										#unmap delete message		 
+bind	index !		noop		 								#unmap report spam
+bind	index b		noop		 								#unmap bounce
+
 
 macro index,pager \cb "set wait_key\ngrep -iPh 'https?://.+?\\s'\nunset wait_key\n" "Show URLs in message"
 
@@ -201,8 +205,9 @@ macro index,pager \cb "set wait_key\ngrep -iPh 'https?://.+?\\s'\nunset wait_key
 #--------------------------------------------------------------------------
 # Second just saves without location confimation.
 # Note also use trick tosave while viewing in alias 'nm=cd $HOME/Downlaods;/usr/bin/mutt;cd -'
-macro attach W <save-entry><kill-line>/home/iain/Downloads/ 
-macro attach E <save-entry><kill-line>/home/iain/Downloads/<enter>
+bind 	attach	s	noop
+macro 	attach sA <save-entry><kill-line>/home/iain/Downloads/ 
+macro 	attach sa <save-entry><kill-line>/home/iain/Downloads/<enter>
 
 #--------------------------------------------------------------------------
 # compose bindings
