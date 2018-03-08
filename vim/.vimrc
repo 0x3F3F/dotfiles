@@ -241,14 +241,14 @@ if has("autocmd")
     autocmd BufEnter,BufRead *.js setlocal omnifunc=javascriptcomplete#CompleteJS tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
 	
 	"Txt files
-	autocmd BufEnter,BufRead *.txt  setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab textwidth=125 spell spelllang=en_gb
+	autocmd BufEnter,BufRead *.txt  setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab textwidth=80 spell spelllang=en_gb
 	
 	"Mutt
-	autocmd BufRead neomutt-* setlocal fo+=aw textwidth=100 spell spelllang=en_gb
+	autocmd BufRead neomutt-* setlocal fo+=aw textwidth=80 noexpandtab  spell spelllang=en_gb
 
-	"Vimwiki files
-	autocmd BufEnter,BufRead *.wiki,*.md setlocal omnifunc=htmlcomplete#CompleteTags filetype=markdown tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab 
-	autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags syntax=markdown
+	"Markdown/Vimwiki files
+	autocmd BufEnter,BufRead *.wiki,*.md setlocal omnifunc=htmlcomplete#CompleteTags filetype=markdown tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab spell spelllang=en_gb 
+	autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags syntax=markdown spell spelllang=en_gb
 
     "C type files
     autocmd BufEnter,BufRead *.c,*.cpp,*.cs,*.java setlocal omnifunc=ccomplete#CompleteCpp tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab cinwords=if,else,for,while,try,except,finally,def,class
