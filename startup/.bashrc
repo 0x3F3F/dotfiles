@@ -125,9 +125,11 @@ else
 	alias gm="cd /media/iain"
 	alias gp="cd /media/iain/Data/Archived\ Docs/Shares/Portfolio"
 	alias rr="/usr/bin/ranger"
-	alias c="/usr/bin/cmus"
+	alias cm="/usr/bin/cmus"
+	#Want Ripgrep to search hidden files, ignore gitignore, don't show permission errors, etc
+	alias rg='rg --no-messages --no-ignore --hidden --follow -g "!**/{.git,.cache,.cpan}/"'
 
-	# Hack to set cursor style to i beam in urxvt
+	# Hack to set cursor style to i-beam in urxvt
 	echo -e "\033[5 q";clear
 fi
 
@@ -164,6 +166,7 @@ fi
 # COMMAND: CTRL-P	Search for files then open in vim
 # DON'T Try to use FZF_CTRL_P_COMMAND, it appears its the daults one to handle this.  I've ADDED ~ so searches from home.
 # The ** in dir regex is 'globstar' and refers to 'zero or more directories'.  When set in bash, ls recusevly searches dirs, this is the same.
+# Note --files flag shows all files that would be searched.  Filtering using -h flags => Need both for find functionality.  fzf is refining selection.
 RG_EXCLUDE_DIRS=".git,.vim,Music,.cache,cache,.cpan,.local,firefox"
 RG_EXCLUDE_FILES="jpg,png,pdf,mp3,mp4,avi,pyc,hide,exe,dll"
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --smart-case -g "!**/{'$RG_EXCLUDE_DIRS'}/"  --iglob "!*.{'$RG_EXCLUDE_FILES'}"  ~ 2> /dev/null'
@@ -187,12 +190,9 @@ export FZF_CTRL_T_COMMAND='rg --files --no-ignore --hidden --follow --smart-case
 # IMPORTANT: Don't use -hidden as it ONLY SHOWS HIDDEN.  Using no flag to see everything.
 export FZF_ALT_C_COMMAND="cd `echo $HOME`; bfs -type d  2>/dev/null | sed \"s|^\.|`echo $HOME`|\""
 
-# Try to preview files.
-# IRB:FOr some reason cant use flags to 'file' in preview call even if wrap in functions.  
-# May come back to. In meantime add specific CTRL_P command as prob don't want binaries included anyway
-#getEncoding () { file -bi "$@" | sed 's/^.*=//g'; }
-#getExt () { echo "$@" | sed 's/^.*\.//g'; }
-export FZF_DEFAULT_OPTS="--color 'hl:9,hl+:9' --preview '(coderay {} || rougify {} || cat {} || tree -C {} ) 2> /dev/null | head -200' "
+# Try to preview files.  HAd trouble with binary code, use rg above to exclude most stuff
+# Installed version  of highlight lacked markdown.  Tried to re-complie/failed.  Copied md.lang to /usr/share/highlight/langDefs and updated /etc/highlight/filetypes.conf
+export FZF_DEFAULT_OPTS="--color 'hl:196,hl+:196' --preview '(highlight -O ansi -l {} || coderay {} || rougify {} || cat {} || tree -C {} ) 2> /dev/null | head -200' "
 
 #########################################################################################
 

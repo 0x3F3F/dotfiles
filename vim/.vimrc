@@ -422,9 +422,10 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-" This mapping might not work as conflicts with terminals that have same mapping
-nmap <C-PageDown> :bprev<CR>
-nmap <C-PageUp> :bnext<CR>
+" C-PageIp mapping might not work as conflicts with terminals that have same mapping
+" Ned URxvt Xdefaults entry to get ctrl-arrow keys working
+nmap <C-Left> :bprev<CR>
+nmap <C-Right> :bnext<CR>
 
 " Easymotion to use Enter as use frequent;y
 map <Enter> <Plug>(easymotion-bd-w)

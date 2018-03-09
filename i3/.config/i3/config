@@ -193,8 +193,6 @@ for_window [class="Pavucontrol"] floating enable
 
 # ASSIGN WORKSPACES TO SPECIFIC PROGRAMS
 # Start from 5 as unlikely to be used after that, keep 1-4 Ad Hoc
-assign [class="MuPDF"] 4:PDFs 
-for_window [class="MuPDF"] focus
 assign [class="LibreOffice"] 6:Port 
 for_window [class="LibreOffice"] focus
 assign [class="libreoffice-calc"] 6:Port 
@@ -206,6 +204,9 @@ assign [class="Anki" title="Add"] 1
 #As window changes title after init, assert doesn;t work.  Use for_window as below
 for_window [title=".*\(Private Browsing\).*"] move to workspace 8:pWeb 
 for_window [title=".*\(Private Browsing\).*"] focus
+# Recompiled mupdf and diesn't have class or name set. Use title that contains pdf.
+assign [title=".*\.(pdf|PDF).*"] 4:PDFs 
+for_window [title=".*\.(pdf|PDF).*"] focus
 
 
 

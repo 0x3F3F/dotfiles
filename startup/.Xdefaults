@@ -63,6 +63,11 @@ URxvt*termName: rxvt-unicode-256color
 !  HAckey, but set this in bashrc.
 !URxvt*cursorUnderline: true
 
+! Need following for vim to be able to use Ctrl-Arrow
+URxvt*keysym.Control-Up:\033[1;5A
+URxvt*keysym.Control-Down:\033[1;5B
+URxvt*keysym.Control-Left:\033[1;5D
+URxvt*keysym.Control-Right:\033[1;5C
 
 ! Color Scheme 
 ! Superceeded by base16 (loaded in bashrc) BUT....

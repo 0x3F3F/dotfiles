@@ -41,7 +41,7 @@ set ssl_starttls 	= yes
 set ssl_force_tls 	= yes
 set mail_check 		= 600		# Time in seconds
 set imap_keepalive 	= 900
-set read_inc		= 100		# Update counter every..
+set read_inc		= 500		# Update counter every..
 set write_inc		= 100
 
 
@@ -165,6 +165,9 @@ bind	index c  	mail	 									#Compose
 #macro	index,pager U  <clear-flag>O							"Mark as unread"
 bind	index d		noop										#unmap delete message		 
 bind	index !		noop		 								#unmap report spam
+bind	index b		noop		 								#unmap bounce
+macro 	pager b 	<pipe-entry>'urlscan'<enter> 				"Ctrl-b to view urls in urlview"
+
 
 #--------------------------------------------------------------------------
 # pager bindings
@@ -187,9 +190,10 @@ bind 	pager <down> next-line									#Scroll in message rather than index
 bind	index d		noop										#unmap delete message		 
 bind	index !		noop		 								#unmap report spam
 bind	index b		noop		 								#unmap bounce
+macro 	pager b 	<pipe-entry>'urlscan'<enter> 				"Ctrl-b to view urls in urlview"
 
 
-macro index,pager \cb "set wait_key\ngrep -iPh 'https?://.+?\\s'\nunset wait_key\n" "Show URLs in message"
+#macro index,pager \cb "set wait_key\ngrep -iPh 'https?://.+?\\s'\nunset wait_key\n" "Show URLs in message"
 
 #--------------------------------------------------------------------------
 # query bindings
