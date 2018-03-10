@@ -190,6 +190,7 @@ for_window [class="Skype"] floating enable
 # Was getting titlebar issues so changed to ;
 for_window [class="Xfce4-notifyd"] floating enable, border none, focus mode-toggle
 for_window [class="Pavucontrol"] floating enable
+for_window [class="keepassxc"] floating enable
 
 # ASSIGN WORKSPACES TO SPECIFIC PROGRAMS
 # Start from 5 as unlikely to be used after that, keep 1-4 Ad Hoc

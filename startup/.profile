@@ -24,6 +24,9 @@ fi
 # Swap Alt-Win keys
 test -f /home/iain/.config/xkb/IRBXkeymap && xkbcomp /home/iain/.config/xkb/IRBXkeymap $DISPLAY &> /dev/null
 
+# New coloring.  Issue with not being able to read 777 folders, edit .dircolors to change stuff.  
+[ -e ~/.dircolors ] && eval $(dircolors -b ~/.dircolors) || eval $(dircolors -b)
+
 #set default editor to gvim.  hide random errors.
 EDITOR="vim"
 VISUAL=$EDITOR
