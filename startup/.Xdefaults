@@ -34,8 +34,8 @@ URxvt.saveLines: 65535
 
 
 ! Stackoverflow recommending adding extra fonts to get all unicode chars.  This worked.
-URxvt.font:	xft:Ubuntu Mono derivative Powerline:pixelsize=16:antialias=true:hinting=true,\
-			xft:DejaVu Sans Mono for Powerline:pixelsize=15:antialias=true:hinting=true,\
+URxvt.font:	xft:UbuntuMono Nerd Font:pixelsize=16:antialias=true:hinting=true,\
+			xft:DejaVuSansMono Nerd Font:pixelsize=15:antialias=true:hinting=true,\
 			xft:Ubuntu Mono:pixelsize=16:antialias=true:hinting=true,\
             -*-unifont-*-*-*-*-*-*-*-*-*-*-*-*
 ! Disable bold, empty will use normal.
