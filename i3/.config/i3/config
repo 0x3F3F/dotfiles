@@ -153,7 +153,7 @@ bar {
 		# Issue with FontAwesome missing symbol asfter instaling latex (fonts extra)
 		# Think it installed earlier version wthat is getting picked up in pref
 		# Instead use patched Nerd Fonts.  Non monospace looks better.
-		font pango:Ubuntu Nerd Font 10
+		font pango:Ubuntu Nerd Font 10.5
 		status_command i3status
 }
 
@@ -208,7 +208,10 @@ for_window [title=".*\(Private Browsing\).*"] focus
 # Recompiled mupdf and diesn't have class or name set. Use title that contains pdf.
 assign [title=".*\.(pdf|PDF).*"] 4:PDFs 
 for_window [title=".*\.(pdf|PDF).*"] focus
-
+# Can't use container for mpv as closes once mpv finishes.  Instead define Portfolio container to
+# have a mark and use that, additionally set portfolio layout to slitv
+# Ionly want to apply to windows in 1st workspace. Having issue shrinking to correct size, seems limit...
+for_window [class="mpv" workspace="^1.*"] move window to mark _portfolio,  resize shrink height 500 px
 
 
 # Startup Applets
@@ -270,5 +273,6 @@ bindsym $mod+F2 exec --no-startup-id /home/iain/bin/LaunchProgs/rport
 bindsym $mod+F3 exec --no-startup-id /usr/bin/anki 
 bindsym $mod+F4 exec --no-startup-id /usr/bin/gnome-calculator 
 bindsym $mod+F7 exec --no-startup-id /usr/bin/firefox
+bindsym $mod+F10 exec --no-startup-id /home/iain/bin/playUrl.sh
 bindsym $mod+F12 exec --no-startup-id /home/iain/bin/volume.sh
 
