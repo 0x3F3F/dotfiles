@@ -439,6 +439,9 @@ nnoremap <leader>4 $
 nnoremap <leader>8 *
 nnoremap <leader>g G
 
+"Standardise behaviour
+nnoremap Y y$
+
 " Underline line 
 nnoremap <leader>= yypVr=
 
