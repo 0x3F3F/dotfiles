@@ -158,13 +158,12 @@ macro 	index gd	<change-folder>+[Gmail]/Drafts<enter>		"Go to 'Drafts'"
 macro 	index gl	<change-folder>?							"Go to 'Label'"
 macro 	index gi	<change-folder>+INBOX<enter> 				"Go to inbox"
 macro 	index gt	"<change-folder>+[Gmail]/Spam<enter>"		"Go to 'Spam'"
-#macro 	index !		<save-message>+[Gmail]/Spam<enter><enter> 	"Report spam"
+macro 	index !		<save-message>+[Gmail]/Spam<enter><enter> 	"Report spam"
 bind  	index a		group-reply									#Reply all
 bind	index c  	mail	 									#Compose
 #macro	index,pager I  <set-flag>O								"Mark as read"
 #macro	index,pager U  <clear-flag>O							"Mark as unread"
 bind	index d		noop										#unmap delete message		 
-bind	index !		noop		 								#unmap report spam
 bind	index b		noop		 								#unmap bounce
 macro 	pager b 	<pipe-entry>'urlscan'<enter> 				"Ctrl-b to view urls in urlview"
 
@@ -183,7 +182,7 @@ macro 	pager gi 	<change-folder>+INBOX<enter> 				"Go to inbox"
 macro 	pager gt 	"<change-folder>+[Gmail]/Spam<enter>"		"Go to 'Spam'"
 #macro 	pager \cb 	<pipe-entry>'urlscan'<enter> 				"Ctrl-b to view urls in urlview"
 #bind  	pager v  	"view-attachements" 						# View attachments
-#macro 	pager !  	<save-message>+[Gmail]/Spam<enter><enter> 	"Report spam"
+macro 	pager !  	<save-message>+[Gmail]/Spam<enter><enter> 	"Report spam"
 bind  	pager a  	group-reply									#Reply all
 bind 	pager <up> 	previous-line								#Scroll in message rather than index
 bind 	pager <down> next-line									#Scroll in message rather than index

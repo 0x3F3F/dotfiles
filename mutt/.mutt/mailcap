@@ -14,7 +14,7 @@ Image/GIF; 		/usr/bin/gpicview '%s'
 
 # PDFs
 #Application/PDF; cp %s /home/iain/Downloads/$(basename %s);/usr/bin/mupdf /home/iain/Downloads/$(basename %s)
-Application/PDF; /usr/bin/mupdf  '%s'
+Application/PDF; /usr/bin/mupdf  '%s' 
 
 # HTML
 #text/html;  w3m -I %{charset} -T text/html; copiousoutput;
