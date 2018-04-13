@@ -209,9 +209,11 @@ assign [class="Anki" title="Add"] 1
 #As window changes title after init, assert doesn;t work.  Use for_window as below
 for_window [title=".*\(Private Browsing\).*"] move to workspace 8:pWeb 
 for_window [title=".*\(Private Browsing\).*"] focus
-# Recompiled mupdf and diesn't have class or name set. Use title that contains pdf.
-assign [title=".*\.(pdf|PDF).*"] 4:PDFs 
-for_window [title=".*\.(pdf|PDF).*"] focus
+# Recompiled mupDF and diesn't have class or name set. Use title that contains pdf.
+assign [class="MuPDF"] 4:PDFs 
+for_window [class="MuPDF"] focus
+assign [class="Zathura"] 4:PDFs 
+for_window [class="Zathura"] focus
 # Can't use container for mpv as closes once mpv finishes.  Instead define Portfolio container to
 # have a mark and use that, additionally set portfolio layout to slitv
 # Ionly want to apply to windows in 1st workspace. Having issue shrinking to correct size, seems can't do 400 
