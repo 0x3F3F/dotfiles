@@ -126,8 +126,11 @@ else
 	alias gp="cd /media/iain/Data/Archived\ Docs/Shares/Portfolio"
 	alias rr="/usr/bin/ranger"
 	alias cm="/usr/bin/cmus"
+	alias nb="/usr/local/bin/newsboat"
+	alias pb="/usr/local/bin/podboat"
 	#Want Ripgrep to search hidden files, ignore gitignore, don't show permission errors, etc
 	alias rg='rg --no-messages --no-ignore --hidden --follow -g "!**/{.git,.cache,.cpan}/"'
+	alias rem='rem -cu'
 
 	# Hack to set cursor style to i-beam in urxvt
 	echo -e "\033[5 q";clear
