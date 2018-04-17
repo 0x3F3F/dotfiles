@@ -5,6 +5,8 @@ show-read-feeds    no
 show-read-articles no
 max-items          20
 keep-articles-days 30
+# Gottcha: Note default is an internal url viewer NOT urlview
+external-url-viewer "urlview"
 
 # Following trick to use external command. Press ",p" to play
 macro p set browser "NewsboatPodPlay.sh  %u"; open-in-browser ; set browser "firefox %u"
@@ -16,4 +18,12 @@ color listnormal_unread   magenta    black
 color listfocus_unread    color233   blue   bold
 color info                color233   blue   bold
 color article             white      black
+
+# Killfiles 
+# For debug try: ignore-mode "display"
+# JoRogan feed
+ignore-article "https://www.youtube.com/feeds/videos.xml?channel_id=UCzQUP1qoWDoEbmsQxvdjxgQ" "title =~ \"MMA\""
+ignore-article "https://www.youtube.com/feeds/videos.xml?channel_id=UCzQUP1qoWDoEbmsQxvdjxgQ" "title =~ \"est of the\""
+
+
 
