@@ -1,6 +1,5 @@
-; Trick to display today
-;REM [trigger(realtoday())] CAL **TODAY**
-REM [trigger(realtoday())] SPECIAL COLOR 20 255 125 **TODAY**
+; Trick to display today. Don't try to color it or always displays.
+REM [trigger(realtoday())] CAL **TODAY**
 
 ; Add in specific files for each type of reminder
 include /home/iain/.config/remind/birthdays.rem
