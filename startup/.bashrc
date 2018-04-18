@@ -130,12 +130,12 @@ else
 	alias pb="/usr/local/bin/podboat"
 	#Want Ripgrep to search hidden files, ignore gitignore, don't show permission errors, etc
 	alias rg='rg --no-messages --no-ignore --hidden --follow -g "!**/{.git,.cache,.cpan}/"'
-	alias rem='/usr/bin/remind -cu /home/iain/.config/remind/reminders.rem'
 
 	# Hack to set cursor style to i-beam in urxvt
 	echo -e "\033[5 q";clear
 fi
 
+rem () { /usr/bin/remind -cu -cc $@ /home/iain/.config/remind/reminders.rem ; } #As fn not alias to let pass params, eg -c2
 weather () { curl wttr.in/"$@"; }
 cheat () { curl cheat.sh/"$@"; }
 
