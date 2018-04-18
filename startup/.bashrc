@@ -130,7 +130,7 @@ else
 	alias pb="/usr/local/bin/podboat"
 	#Want Ripgrep to search hidden files, ignore gitignore, don't show permission errors, etc
 	alias rg='rg --no-messages --no-ignore --hidden --follow -g "!**/{.git,.cache,.cpan}/"'
-	alias rem='rem -cu'
+	alias rem='/usr/bin/remind -cu /home/iain/.config/remind/reminders.rem'
 
 	# Hack to set cursor style to i-beam in urxvt
 	echo -e "\033[5 q";clear
@@ -198,4 +198,14 @@ export FZF_ALT_C_COMMAND="cd `echo $HOME`; bfs -type d  2>/dev/null | sed \"s|^\
 export FZF_DEFAULT_OPTS="--color 'hl:196,hl+:196' --preview '(highlight -O ansi -l {} || coderay {} || rougify {} || cat {} || tree -C {} ) 2> /dev/null | head -200' "
 
 #########################################################################################
+
+##### Welcome Message: Output reminder
+REMINDER=$(/usr/bin/remind  /home/iain/.config/remind/reminders.rem)
+if [ "$REMINDER" != "No reminders." ] ; then
+	REMINDER="${REMINDER/*:/Today: }"
+	echo -e "\033[0;33m               " $REMINDER "\033[00m"
+fi
+
+
+
 

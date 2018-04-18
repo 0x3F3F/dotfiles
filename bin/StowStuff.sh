@@ -36,6 +36,7 @@ cd ~/.dotfiles
 /usr/bin/stow $1 newsboat
 /usr/bin/stow $1 mutt
 /usr/bin/stow $1 ranger
+/usr/bin/stow $1 remind
 #/usr/bin/stow $1 rawdog
 /usr/bin/stow $1 startup
 /usr/bin/stow $1 tmux

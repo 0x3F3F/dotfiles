@@ -1,0 +1,10 @@
+; Trick to display today
+REM [trigger(realtoday())] CAL *TODAY*
+
+; Add in specific files for each type of reminder
+include /home/iain/.config/remind/birthdays.rem
+include /home/iain/.config/remind/appointments.rem
+; Stuff don't want in git
+include /home/iain/.config/remind/hidden.rem
+
+

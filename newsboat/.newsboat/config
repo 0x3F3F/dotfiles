@@ -24,6 +24,13 @@ color article             white      black
 # JoRogan feed
 ignore-article "https://www.youtube.com/feeds/videos.xml?channel_id=UCzQUP1qoWDoEbmsQxvdjxgQ" "title =~ \"MMA\""
 ignore-article "https://www.youtube.com/feeds/videos.xml?channel_id=UCzQUP1qoWDoEbmsQxvdjxgQ" "title =~ \"est of the\""
+# Mark Yusko
+ignore-article "https://twitrss.me/twitter_user_to_rss/?user=MarkYusko" "title =~ \"itcoin\"" 
+ignore-article "https://twitrss.me/twitter_user_to_rss/?user=MarkYusko" "title =~ \"rypto\"" 
+ignore-article "https://twitrss.me/twitter_user_to_rss/?user=MarkYusko" "title =~ \"token\"" 
+ignore-article "https://twitrss.me/twitter_user_to_rss/?user=MarkYusko" "title =~ \"therium\"" 
+ignore-article "https://twitrss.me/twitter_user_to_rss/?user=MarkYusko" "title =~ \"lockchain\"" 
+ignore-article "https://twitrss.me/twitter_user_to_rss/?user=MarkYusko" "title =~ \"BTC\"" 
 
 
 
