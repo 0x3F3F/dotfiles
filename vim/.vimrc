@@ -69,7 +69,7 @@ set bs=indent,eol,start
 "exec "set listchars=tab:\uBB\uBB,nbsp:~,trail:\uB7" 
 "set list                
 set relativenumber
-set whichwrap+=<,>,[,]
+set whichwrap+=<,>,h,l,[,]
 set tabstop=4          
 set shiftwidth=4        
 "set expandtab        
@@ -210,6 +210,9 @@ else
 	colorscheme base16-ocean
 
 	set cursorline							
+
+	" Change Visual mode select text as Color Scheme gives no contrant 
+	highlight Visual cterm=bold ctermbg=White ctermfg=Black
 endif
 
 
