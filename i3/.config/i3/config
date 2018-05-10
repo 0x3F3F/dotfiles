@@ -187,7 +187,6 @@ exec --no-startup-id feh --bg-scale /usr/share/backgrounds/linuxmint-sarah/barto
 # ASSIGN SPECIFIC PROGRAMS AS FLOATING
 # To get class run ~/bin/i3/get-window-criteria then select win with arrows
 for_window [class="Gcalctool"] floating enable
-#for_window [class="KeePass2" title="Database"] floating enable
 for_window [class="Gnome-encfs-manager"] floating enable
 for_window [class="Synaptic"] floating enable
 #for_window [class="Thunar"] floating enable
@@ -196,7 +195,7 @@ for_window [class="Skype"] floating enable
 # Was getting titlebar issues so changed to ;
 for_window [class="Xfce4-notifyd"] floating enable, border none, focus mode-toggle
 for_window [class="Pavucontrol"] floating enable
-for_window [class="keepassxc"] floating enable
+#for_window [class="keepassxc"] floating enable
 
 # ASSIGN WORKSPACES TO SPECIFIC PROGRAMS
 # Start from 5 as unlikely to be used after that, keep 1-4 Ad Hoc
@@ -277,7 +276,6 @@ bindsym XF86AudioNext exec cmus-remote  --next
 bindsym XF86AudioPrev exec cmus-remote  --prev
 
 # Shortcuts
-bindsym $mod+F1 exec --no-startup-id /usr/bin/keepass2 
 bindsym $mod+F2 exec --no-startup-id /home/iain/bin/LaunchProgs/rport
 bindsym $mod+F3 exec --no-startup-id /usr/bin/anki 
 bindsym $mod+F4 exec --no-startup-id /usr/bin/gnome-calculator 

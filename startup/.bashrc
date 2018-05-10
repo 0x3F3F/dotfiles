@@ -97,12 +97,15 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 
+# Common Aliasea
+alias v="/usr/bin/vim"
+alias h=history
+
+# Machine Specific ones
 if [ "$HOSTNAME" = raspberrypi ] ; then
 	########## IRB Pi Specifig Aliases ###########
 	#Move to separate file as below if gets big list
-	alias h=history
 	alias tr='transmission-remote'
-	alias tc='transmission-remote-cli'
 	alias gm='cd /media/wdhd'
 	alias gf='cd /media/wdhd/FilmsTV'
 	alias gt='cd /media/wdhd/FilmsTV/TempQueue'
@@ -117,7 +120,6 @@ else
 
 	############ IRB Other Aliases ###############
 	#Stop gvim errors on startup
-	alias h=history
 	alias gvim="gvim 2>/dev/null"
 	alias mp="/home/iain/.local/bin/mpsyt"
 	alias nm="/usr/bin/neomutt"
@@ -127,7 +129,6 @@ else
 	alias rr="/usr/bin/ranger"
 	alias cm="/usr/bin/cmus"
 	alias nb="/usr/local/bin/newsboat"
-	alias pb="/usr/local/bin/podboat"
 	#Want Ripgrep to search hidden files, ignore gitignore, don't show permission errors, etc
 	alias rg='rg --no-messages --no-ignore --hidden --follow -g "!**/{.git,.cache,.cpan}/"'
 
