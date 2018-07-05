@@ -252,6 +252,7 @@ if has("autocmd")
 	"Markdown/Vimwiki files
 	autocmd BufEnter,BufRead *.wiki,*.md setlocal omnifunc=htmlcomplete#CompleteTags filetype=markdown tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab spell spelllang=en_gb 
 	autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags syntax=markdown tw=90 wrap linebreak nolist spell spelllang=en_gb
+	autocmd BufEnter,BufRead Training_* setlocal nowrap
 
     "C type files
     autocmd BufEnter,BufRead *.c,*.cpp,*.cs,*.java setlocal omnifunc=ccomplete#CompleteCpp tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab cinwords=if,else,for,while,try,except,finally,def,class
@@ -427,8 +428,8 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 " C-PageIp mapping might not work as conflicts with terminals that have same mapping
 " Ned URxvt Xdefaults entry to get ctrl-arrow keys working
-nmap <C-Left> :bprev<CR>
-nmap <C-Right> :bnext<CR>
+nmap gT :bprev<CR>
+nmap gt :bnext<CR>
 
 " Easymotion to use Enter as use frequent;y
 map <Enter> <Plug>(easymotion-bd-w)
