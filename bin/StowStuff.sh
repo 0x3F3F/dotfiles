@@ -34,6 +34,7 @@ cd ~/.dotfiles
 #/usr/bin/stow $1 getmail
 /usr/bin/stow $1 i3
 /usr/bin/stow $1 newsboat
+/usr/bin/stow $1 mpv
 /usr/bin/stow $1 mutt
 /usr/bin/stow $1 ranger
 /usr/bin/stow $1 remind

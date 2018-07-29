@@ -431,9 +431,12 @@ nnoremap <C-l> <C-w>l
 nmap gT :bprev<CR>
 nmap gt :bnext<CR>
 
+" Stop extering eb mode accidentally
+nnoremap Q <Nop>
+ 
 " Easymotion to use Enter as use frequent;y
-map <Enter> <Plug>(easymotion-bd-w)
-map <leader><Enter> <Plug>(easymotion-bd-e)
+map <enter> <Plug>(easymotion-bd-w)
+map <leader><enter> <Plug>(easymotion-bd-e)
 " Enable in insert mode too C-o lets us run cmd from insert mode.
 "imap <leader>f <C-o><om iPlug>(easymotion-bd-w)
 
