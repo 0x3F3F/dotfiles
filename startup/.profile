@@ -21,6 +21,10 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$PATH:$HOME/bin:$HOME/bin/i3:$HOME/bin/LaunchProgs:$HOME/bin/NoAutoBackup"
 fi
 
+# set background on pi. Professional, like.
+if [ "$HOSTNAME" = raspberrypi ] ; then
+	/home/pi/bin/background.sh
+fi
 
 #set default editor to gvim.  hide random errors.
 EDITOR="vim"

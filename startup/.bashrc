@@ -97,6 +97,8 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 
+alias h="history"
+alias v="vim"
 if [ "$HOSTNAME" = raspberrypi ] ; then
 	########## IRB Pi Specifig Aliases ###########
 	#Move to separate file as below if gets big list
@@ -107,6 +109,7 @@ if [ "$HOSTNAME" = raspberrypi ] ; then
 	alias gt='cd /media/wdhd/FilmsTV/TempQueue'
 	alias rr="/usr/bin/ranger"
 	alias rt="/usr/bin/ranger /media/wdhd/FilmsTV/TempQueue"
+	alias y="ytplay.sh "
 
 	eval `ssh-agent -s`
 	ssh-add ~/.ssh/gitkey
