@@ -102,16 +102,8 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 
-<<<<<<< HEAD
-# Common Aliasea
-alias v="/usr/bin/vim"
-alias h=history
-
-# Machine Specific ones
-=======
 alias h="history"
 alias v="vim"
->>>>>>> 240c9301c5be00eb23db115d3b88f2d7029557c0
 if [ "$HOSTNAME" = raspberrypi ] ; then
 	########## IRB Pi Specifig Aliases ###########
 	#Move to separate file as below if gets big list
@@ -121,11 +113,8 @@ if [ "$HOSTNAME" = raspberrypi ] ; then
 	alias gt='cd /media/wdhd/FilmsTV/TempQueue'
 	alias rr="/usr/bin/ranger"
 	alias rt="/usr/bin/ranger /media/wdhd/FilmsTV/TempQueue"
-<<<<<<< HEAD
 else
-=======
 	alias y="ytplay.sh "
->>>>>>> 240c9301c5be00eb23db115d3b88f2d7029557c0
 
 	# Base16 color scheme as https://github.com/chriskempson/base16-shell
 	# Type base16_<tab> to see all possibilities.  Can easily switch theme.
