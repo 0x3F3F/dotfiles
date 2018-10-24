@@ -21,11 +21,17 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$PATH:$HOME/bin:$HOME/bin/i3:$HOME/bin/LaunchProgs:$HOME/bin/NoAutoBackup:$HOME/scripts:$HOME/.local/bin"
 fi
 
-# Swap Alt-Win keys
-test -f /home/iain/.config/xkb/IRBXkeymap && xkbcomp /home/iain/.config/xkb/IRBXkeymap $DISPLAY &> /dev/null
 
-# New coloring.  Issue with not being able to read 777 folders, edit .dircolors to change stuff.  
-[ -e ~/.dircolors ] && eval $(dircolors -b ~/.dircolors) || eval $(dircolors -b)
+# set background on pi. Professional, like.
+if [ "$HOSTNAME" = raspberrypi ] ; then
+	/home/pi/bin/background.sh
+else
+	# Swap Alt-Win keys
+	test -f /home/iain/.config/xkb/IRBXkeymap && xkbcomp /home/iain/.config/xkb/IRBXkeymap $DISPLAY &> /dev/null
+
+	# New coloring.  Issue with not being able to read 777 folders, edit .dircolors to change stuff.  
+	[ -e ~/.dircolors ] && eval $(dircolors -b ~/.dircolors) || eval $(dircolors -b)
+fi
 
 #set default editor to gvim.  hide random errors.
 EDITOR="vim"
