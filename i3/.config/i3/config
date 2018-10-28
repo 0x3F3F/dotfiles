@@ -241,17 +241,16 @@ exec --no-startup-id nm-applet
 
 # Load Workspace files
 exec --no-startup-id "i3-msg 'workspace 1:Web ; append_layout /home/iain/.config/i3/workspace-1.json'"
-exec --no-startup-id "i3-msg 'workspace 2:MailMusic ﭵ; append_layout /home/iain/.config/i3/workspace-2.json'"
+#exec --no-startup-id "i3-msg 'workspace 2:MailMusic ﭵ; append_layout /home/iain/.config/i3/workspace-2.json'"
 
 # Start Programs
 # Note on urxvt terminal progs, they're not picking up base16 color scheme
 # Think this is as either (i) bashrc not ran OR (ii) Thre is no terminal prompt
 # I'll instead keep come colour definitions in .Xdefaults
 # After progfram terminated the ';bash -i' loads new terminal that does pick up base16
-exec  --no-startup-id "/usr/bin/urxvt -name 'mutt' -e bash -c 'bash -i'"
-exec  --no-startup-id "/usr/bin/urxvt -name 'cmus' -e bash -c 'bash -i'"
 exec --no-startup-id "/usr/bin/urxvt -name 'Portfolio' -e bash -c '/home/iain/scripts/portfolio.py;bash -i'"
 exec --no-startup-id /usr/bin/firefox 
+#exec  --no-startup-id "/usr/bin/urxvt -name 'mutt' -e bash -c 'bash -i'"
 
 # Shutdown script from https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/ 
 set $mode_system System (l) lock, (e) Logout, (s) Shutdown, (h) Hibernate, (r) Reboot, (Shift+s) Suspend
