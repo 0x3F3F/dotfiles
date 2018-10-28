@@ -11,7 +11,7 @@ esac
 # IRB - Fix Highlighting on USB writable folders
 LS_COLORS="$LS_COLORS:ow="; export LS_COLORS
 
-export TERM="rxvt-unicode-256color"
+#export TERM="rxvt-unicode-256color"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -105,6 +105,8 @@ fi
 alias h="history"
 alias v="vim"
 if [ "$HOSTNAME" = raspberrypi ] ; then
+	TERM=xterm-color; export TERM
+
 	########## IRB Pi Specifig Aliases ###########
 	#Move to separate file as below if gets big list
 	alias tr='transmission-remote'
@@ -203,13 +205,14 @@ export FZF_DEFAULT_OPTS="--color 'hl:196,hl+:196' --preview '(highlight -O ansi 
 
 #########################################################################################
 
-##### Welcome Message: Output reminder
-REMINDER=$(/usr/bin/remind  /home/iain/.config/remind/reminders.rem)
-if [ "$REMINDER" != "No reminders." ] ; then
-	REMINDER="${REMINDER/*:/Today: }"
-	echo -e "\033[0;33m               " $REMINDER "\033[00m"
+if [ "$HOSTNAME" != raspberrypi ] ; then
+	##### Welcome Message: Output reminder
+	REMINDER=$(/usr/bin/remind  /home/iain/.config/remind/reminders.rem)
+	if [ "$REMINDER" != "No reminders." ] ; then
+		REMINDER="${REMINDER/*:/Today: }"
+		echo -e "\033[0;33m               " $REMINDER "\033[00m"
+	fi
 fi
-
 
 
 
