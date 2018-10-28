@@ -11,7 +11,6 @@ esac
 # IRB - Fix Highlighting on USB writable folders
 LS_COLORS="$LS_COLORS:ow="; export LS_COLORS
 
-#export TERM="rxvt-unicode-256color"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -116,8 +115,9 @@ if [ "$HOSTNAME" = raspberrypi ] ; then
 	alias rr="/usr/bin/ranger"
 	alias rt="/usr/bin/ranger /media/wdhd/FilmsTV/TempQueue"
 else
-	alias y="ytplay.sh "
 
+	export TERM="rxvt-unicode-256color"
+	
 	# Base16 color scheme as https://github.com/chriskempson/base16-shell
 	# Type base16_<tab> to see all possibilities.  Can easily switch theme.
 	BASE16_SHELL=$HOME/.config/base16-shell/
@@ -136,6 +136,7 @@ else
 	alias nb="/usr/local/bin/newsboat"
 	#Want Ripgrep to search hidden files, ignore gitignore, don't show permission errors, etc
 	alias rg='rg --no-messages --no-ignore --hidden --follow -g "!**/{.git,.cache,.cpan}/"'
+	alias y="ytplay.sh "
 
 	# Hack to set cursor style to i-beam in urxvt
 	echo -e "\033[5 q";clear
