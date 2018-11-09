@@ -11,7 +11,6 @@ esac
 # IRB - Fix Highlighting on USB writable folders
 LS_COLORS="$LS_COLORS:ow="; export LS_COLORS
 
-export TERM="rxvt-unicode-256color"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -105,6 +104,8 @@ fi
 alias h="history"
 alias v="vim"
 if [ "$HOSTNAME" = raspberrypi ] ; then
+	TERM=xterm-color; export TERM
+
 	########## IRB Pi Specifig Aliases ###########
 	#Move to separate file as below if gets big list
 	alias tr='transmission-remote'
@@ -114,8 +115,9 @@ if [ "$HOSTNAME" = raspberrypi ] ; then
 	alias rr="/usr/bin/ranger"
 	alias rt="/usr/bin/ranger /media/wdhd/FilmsTV/TempQueue"
 else
-	alias y="ytplay.sh "
 
+	export TERM="rxvt-unicode-256color"
+	
 	# Base16 color scheme as https://github.com/chriskempson/base16-shell
 	# Type base16_<tab> to see all possibilities.  Can easily switch theme.
 	BASE16_SHELL=$HOME/.config/base16-shell/
@@ -134,6 +136,7 @@ else
 	alias nb="/usr/local/bin/newsboat"
 	#Want Ripgrep to search hidden files, ignore gitignore, don't show permission errors, etc
 	alias rg='rg --no-messages --no-ignore --hidden --follow -g "!**/{.git,.cache,.cpan}/"'
+	alias y="ytplay.sh "
 
 	# Hack to set cursor style to i-beam in urxvt
 	echo -e "\033[5 q";clear
@@ -203,13 +206,14 @@ export FZF_DEFAULT_OPTS="--color 'hl:196,hl+:196' --preview '(highlight -O ansi 
 
 #########################################################################################
 
-##### Welcome Message: Output reminder
-REMINDER=$(/usr/bin/remind  /home/iain/.config/remind/reminders.rem)
-if [ "$REMINDER" != "No reminders." ] ; then
-	REMINDER="${REMINDER/*:/Today: }"
-	echo -e "\033[0;33m               " $REMINDER "\033[00m"
+if [ "$HOSTNAME" != raspberrypi ] ; then
+	##### Welcome Message: Output reminder
+	REMINDER=$(/usr/bin/remind  /home/iain/.config/remind/reminders.rem)
+	if [ "$REMINDER" != "No reminders." ] ; then
+		REMINDER="${REMINDER/*:/Today: }"
+		echo -e "\033[0;33m               " $REMINDER "\033[00m"
+	fi
 fi
-
 
 
 
