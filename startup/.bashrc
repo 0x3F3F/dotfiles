@@ -31,7 +31,7 @@ shopt -s checkwinsize
 
 
 # Turn on vi mode is bash.  Esc to enter command mode
-set -o vi
+#set -o vi
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.

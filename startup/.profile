@@ -31,6 +31,11 @@ else
 
 	# New coloring.  Issue with not being able to read 777 folders, edit .dircolors to change stuff.  
 	[ -e ~/.dircolors ] && eval $(dircolors -b ~/.dircolors) || eval $(dircolors -b)
+
+	# Specifying lat/long and max/min colour temp.  -b specified brightness. 
+	#redshift -l 42.6:-5.7 -t 5000:4000 -b 1.0:0.9 &
+	# Use fixed temp with no transaction.  No need to background.
+	redshift -O 4600
 fi
 
 #set default editor to gvim.  hide random errors.
