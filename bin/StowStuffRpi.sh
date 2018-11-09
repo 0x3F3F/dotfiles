@@ -37,7 +37,7 @@ cd ~/.dotfiles
 /usr/bin/stow $1 ranger-rpi
 #/usr/bin/stow $1 rawdog
 /usr/bin/stow $1 youtube-dl
-/usr/bin/stow $1 startup 
+/usr/bin/stow $1 startup-rpi
 /usr/bin/stow $1 tmux 
 #/usr/bin/stow $1 transmission-rpi Bit finiky, maybe not bother and manually hard copy.
 #/usr/bin/stow $1 vim color shemes / nerdcommenter doesn't work

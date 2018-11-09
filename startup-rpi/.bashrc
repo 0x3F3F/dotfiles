@@ -99,35 +99,18 @@ fi
 
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-export TERM="rxvt-unicode-256color"
+TERM=xterm-color; export TERM
 
-# Base16 color scheme as https://github.com/chriskempson/base16-shell
-# Type base16_<tab> to see all possibilities.  Can easily switch theme.
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-
-
-	
-
-############ IRB Other Aliases ###############
+########## IRB Pi Specifig Aliases ###########
+#Move to separate file as below if gets big list
+alias tr='transmission-remote'
+alias gm='cd /media/wdhd'
+alias gf='cd /media/wdhd/FilmsTV'
+alias gt='cd /media/wdhd/FilmsTV/TempQueue'
+alias rr="/usr/bin/ranger"
+alias rt="/usr/bin/ranger /media/wdhd/FilmsTV/TempQueue"
 alias h="history"
 alias v="vim"
-#Stop gvim errors on startup
-alias gvim="gvim 2>/dev/null"
-alias mp="/home/iain/.local/bin/mpsyt"
-alias nm="/usr/bin/neomutt"
-#alias yt='mpv --really-quiet  --ytdl-format="bestvideo[height<=?720][vcodec!=vp9]+bestaudio/best"'
-alias gm="cd /media/iain"
-alias gp="cd /media/iain/Data/Archived\ Docs/Shares/Portfolio"
-alias rr="/usr/bin/ranger"
-alias cm="/usr/bin/cmus"
-alias nb="/usr/local/bin/newsboat"
-#Want Ripgrep to search hidden files, ignore gitignore, don't show permission errors, etc
-alias rg='rg --no-messages --no-ignore --hidden --follow -g "!**/{.git,.cache,.cpan}/"'
-alias y="ytplay.sh "
-
-# Hack to set cursor style to i-beam in urxvt
-echo -e "\033[5 q";clear
 
 rem () { /usr/bin/remind -cu -cc $@ /home/iain/.config/remind/reminders.rem ; } #As fn not alias to let pass params, eg -c2
 weather () { curl wttr.in/"$@"; }
@@ -190,15 +173,4 @@ export FZF_ALT_C_COMMAND="cd `echo $HOME`; bfs -type d  2>/dev/null | sed \"s|^\
 # Try to preview files.  HAd trouble with binary code, use rg above to exclude most stuff
 # Installed version  of highlight lacked markdown.  Tried to re-complie/failed.  Copied md.lang to /usr/share/highlight/langDefs and updated /etc/highlight/filetypes.conf
 export FZF_DEFAULT_OPTS="--color 'hl:196,hl+:196' --preview '(highlight -O ansi -l {} || coderay {} || rougify {} || cat {} || tree -C {} ) 2> /dev/null | head -200' "
-
-#########################################################################################
-
-##### Welcome Message: Output reminder
-REMINDER=$(/usr/bin/remind  /home/iain/.config/remind/reminders.rem)
-if [ "$REMINDER" != "No reminders." ] ; then
-	REMINDER="${REMINDER/*:/Today: }"
-	echo -e "\033[0;33m               " $REMINDER "\033[00m"
-fi
-
-
 
