@@ -220,6 +220,10 @@ for_window [class="mpv" workspace="^1.*"] move window to mark _portfolio, resize
 for_window [class="vlc" workspace="^1.*"] move window to mark _portfolio, resize shrink height 200, resize shrink height 200
 
 
+# Load Workspace files
+exec --no-startup-id "i3-msg 'workspace 1:Web ; append_layout /home/iain/.config/i3/workspace-1.json'"
+#exec --no-startup-id "i3-msg 'workspace 2:MailMusic ﭵ; append_layout /home/iain/.config/i3/workspace-2.json'"
+
 # Startup Applets
 exec --no-startup-id pa-applet
 #exec --no-startup-id gnome-encfs-manager
@@ -239,17 +243,14 @@ exec --no-startup-id nm-applet
 # 2) Give every terminal a name, otherwise start openeing in random places.
 # https://www.reddit.com/r/i3wm/comments/655mey/how_to_make_programs_execute_automatically_on/
 
-# Load Workspace files
-exec --no-startup-id "i3-msg 'workspace 1:Web ; append_layout /home/iain/.config/i3/workspace-1.json'"
-#exec --no-startup-id "i3-msg 'workspace 2:MailMusic ﭵ; append_layout /home/iain/.config/i3/workspace-2.json'"
 
 # Start Programs
 # Note on urxvt terminal progs, they're not picking up base16 color scheme
 # Think this is as either (i) bashrc not ran OR (ii) Thre is no terminal prompt
 # I'll instead keep come colour definitions in .Xdefaults
 # After progfram terminated the ';bash -i' loads new terminal that does pick up base16
-exec --no-startup-id "/usr/bin/urxvt -name 'Portfolio' -e bash -c '/home/iain/scripts/portfolio.py;bash -i'"
 exec --no-startup-id /usr/bin/firefox 
+exec --no-startup-id "/usr/bin/urxvt -name 'Portfolio' -e bash -c '/home/iain/scripts/portfolio.py;bash -i'"
 #exec  --no-startup-id "/usr/bin/urxvt -name 'mutt' -e bash -c 'bash -i'"
 
 # Shutdown script from https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/ 
