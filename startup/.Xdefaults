@@ -49,9 +49,11 @@ URxvt*boldFont:
 ! URxvt*boldItalicFont:  xft:Monospace:bold:italic:autohint=true:pixelsize=14
 URxvt*letterSpace: -1
 URxvt.scrollBar: false
+
 ! Fade window when not focused
-URxvt*fading: 60
+!URxvt*fading: 60
 URxvt.depth: 32
+
 ! Set to blank fixed a bug in vim
 URxvt*cursorColor:#f2f2f2
 URxvt*cursorBlink: true
