@@ -11,6 +11,8 @@ esac
 # IRB - Fix Highlighting on USB writable folders
 LS_COLORS="$LS_COLORS:ow="; export LS_COLORS
 
+export BC_ENV_ARGS='/home/iain/.bc'
+
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -124,7 +126,9 @@ alias cm="/usr/bin/cmus"
 alias nb="/usr/local/bin/newsboat"
 #Want Ripgrep to search hidden files, ignore gitignore, don't show permission errors, etc
 alias rg='rg --no-messages --no-ignore --hidden --follow -g "!**/{.git,.cache,.cpan}/"'
-alias y="ytplay.sh "
+alias yt="ytplay.sh "
+alias ytu="ytupdate.sh "
+alias r="ssh raspberrypi"
 
 # Hack to set cursor style to i-beam in urxvt
 echo -e "\033[5 q";clear
