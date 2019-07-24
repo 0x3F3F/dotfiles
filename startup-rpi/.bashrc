@@ -111,6 +111,13 @@ alias rr="/usr/bin/ranger"
 alias rt="/usr/bin/ranger /media/wdhd/FilmsTV/TempQueue"
 alias h="history"
 alias v="vim"
+alias sc="scim ~/Documents/Shares/portfolio.sc"
+alias m="cmus"
+alias cm="cmus"
+alias mp="mpsyt"
+alias am="alsamixer"
+alias yt="ytplay.sh"
+alias ytu="ytupdate.sh"
 
 rem () { /usr/bin/remind -cu -cc $@ /home/iain/.config/remind/reminders.rem ; } #As fn not alias to let pass params, eg -c2
 weather () { curl wttr.in/"$@"; }
