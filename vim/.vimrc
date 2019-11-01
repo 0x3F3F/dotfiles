@@ -403,6 +403,9 @@ nnoremap <F3> :set list!<CR>
 "let mapleader=","
 let mapleader="\<Space>"
 
+" Fuck right off Ex mode
+nnoremap Q <Nop>
+
 " Quicker Escape
 " Use NOREmap perferable as otherwise pauses to see what next char is 
 inoremap jj <esc>
