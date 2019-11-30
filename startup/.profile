@@ -29,9 +29,13 @@ test -f /home/iain/.config/xkb/IRBXkeymap && xkbcomp /home/iain/.config/xkb/IRBX
 [ -e ~/.dircolors ] && eval $(dircolors -b ~/.dircolors) || eval $(dircolors -b)
 
 # Specifying lat/long and max/min colour temp.  -b specified brightness. 
-#redshift -l 42.6:-5.7 -t 5000:4000 -b 1.0:0.9 &
-# Use fixed temp with no transaction.  No need to background.
-redshift -O 4600
+redshift -l 42.6:-5.7 -t 5500:4800 -b 1.0:0.9 &
+#redshift -O 5200
+
+# Test to stop screen blanking
+xset s off
+xset s noblank
+#xset -dpms
 
 #set default editor to gvim.  hide random errors.
 EDITOR="vim"
