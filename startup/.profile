@@ -29,8 +29,9 @@ test -f /home/iain/.config/xkb/IRBXkeymap && xkbcomp /home/iain/.config/xkb/IRBX
 [ -e ~/.dircolors ] && eval $(dircolors -b ~/.dircolors) || eval $(dircolors -b)
 
 # Specifying lat/long and max/min colour temp.  -b specified brightness. 
-redshift -l 42.6:-5.7 -t 5500:4800 -b 1.0:0.9 &
+#redshift -l 42.6:-5.7 -t 5500:4800 -b 1.0:0.9 &
 #redshift -O 5200
+# Now set up using "systemctl --user enable redshift.service --now" and conf file in .config/redhift
 
 # Test to stop screen blanking
 xset s off

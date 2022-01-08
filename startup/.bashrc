@@ -117,25 +117,33 @@ alias v="vim"
 #Stop gvim errors on startup
 alias gvim="gvim 2>/dev/null"
 alias mp="/home/iain/.local/bin/mpsyt"
-alias nm="/usr/bin/neomutt"
+#alias nm="/usr/bin/neomutt"
+alias m="/usr/bin/mutt"
 #alias yt='mpv --really-quiet  --ytdl-format="bestvideo[height<=?720][vcodec!=vp9]+bestaudio/best"'
 alias gm="cd /media/iain"
 alias gp="cd /media/iain/Data/Archived\ Docs/Shares/Portfolio"
+alias gw="cd /home/iain/Dev/0x3F3F.github.io/_posts"
+alias l="ls"
 alias rr="/usr/bin/ranger"
-alias cm="/usr/bin/cmus"
 alias nb="/usr/local/bin/newsboat"
 #Want Ripgrep to search hidden files, ignore gitignore, don't show permission errors, etc
 alias rg='rg --no-messages --no-ignore --hidden --follow -g "!**/{.git,.cache,.cpan}/"'
+alias ytd="yt-dlp"
+alias ytm="yt-dlp -ic  --extract-audio --yes-playlist --audio-format mp3 --audio-quality 0 "
 alias yt="ytplay.sh "
-alias ytu="ytupdate.sh "
 alias r="ssh raspberrypi"
+alias ww="sudo web.sh"
+alias am="alsamixer -c 0"
+alias cm="/usr/bin/cmus" 
+alias b="vim /home/iain/Books/NotesOnBooks/Philosophy/De\ Botton,\ Alain/HowProustCanChangeYourLife.md"
 
 # Hack to set cursor style to i-beam in urxvt
 echo -e "\033[5 q";clear
 
-rem () { /usr/bin/remind -cu -cc $@ /home/iain/.config/remind/reminders.rem ; } #As fn not alias to let pass params, eg -c2
+rem () { /usr/bin/remind -w80 -cu -cc $@ /home/iain/.config/remind/reminders.rem ; } #As fn not alias to let pass params, eg -c2
 weather () { curl wttr.in/"$@"; }
 cheat () { curl cheat.sh/"$@"; }
+pdf () { convert $1 -background white -alpha remove -alpha off $1 ; /usr/bin/img2pdf -o ${1%.*}.pdf $1 ; } 
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like

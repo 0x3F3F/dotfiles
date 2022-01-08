@@ -179,17 +179,24 @@ bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
 #Set background image
-exec --no-startup-id feh --bg-scale /usr/share/backgrounds/linuxmint-sarah/bartosova_aurora.jpg 
+exec --no-startup-id feh --bg-scale /home/iain/.config/wallpaper/muppet.jpg
+# Start redshift
+exec systemctl --user start redshift
+
 
 # Try to fix bug that show colored bars at bottom right of terminal windws
 # Caused by terminal application not painting background on all of canvas
 # Set background color in i3 so bits not painted match
 #client.background #342826
 
+# Turn off screen blanking
+exec --no-startup-id xset s off
+exec --no-startup-id xset -dpms
+exec --no-startup-id xset s noblank
 
 # ASSIGN SPECIFIC PROGRAMS AS FLOATING
 # To get class run ~/bin/i3/get-window-criteria then select win with arrows
-for_window [class="Gcalctool"] floating enable
+for_window [class="Gnome-calculator"] floating enable
 for_window [class="Gnome-encfs-manager"] floating enable
 for_window [class="Synaptic"] floating enable
 #for_window [class="Thunar"] floating enable
@@ -228,12 +235,14 @@ exec --no-startup-id "i3-msg 'workspace 1:Web ; append_layout /home/iain/.con
 #exec --no-startup-id "i3-msg 'workspace 2:MailMusic ﭵ; append_layout /home/iain/.config/i3/workspace-2.json'"
 
 # Startup Applets
-exec --no-startup-id pa-applet
 #exec --no-startup-id gnome-encfs-manager
 exec --no-startup-id udiskie --tray 
 # if wifi issue, use 'nmcli dev wifi' and 'nmcli device wifi connect APname Password'
 # OR restart via 'sudo service network-namager restart'
 exec --no-startup-id nm-applet
+exec --no-startup-id pa-applet
+#exec --no-startup-id volumeicon
+
 
 #Start with USB keyboard which is US
 #exec --no-startup-id "setxkbmap -model pc105 -layout us"
@@ -253,7 +262,8 @@ exec --no-startup-id nm-applet
 # I'll instead keep come colour definitions in .Xdefaults
 # After progfram terminated the ';bash -i' loads new terminal that does pick up base16
 exec --no-startup-id /usr/bin/firefox 
-exec --no-startup-id "/usr/bin/urxvt -name 'Portfolio' -e bash -c '/home/iain/scripts/portfolio.py;bash -i'"
+# issue with messed up fonts .  Think as X hasn't finished so add small delay
+exec --no-startup-id "sleep 3; /usr/bin/urxvt -name 'Portfolio' -e bash -c '/home/iain/scripts/portfolio.py;bash -i'"
 #exec  --no-startup-id "/usr/bin/urxvt -name 'mutt' -e bash -c 'bash -i'"
 
 # Shutdown script from https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/ 
@@ -283,6 +293,6 @@ bindsym $mod+F2 exec --no-startup-id /home/iain/bin/LaunchProgs/rport
 bindsym $mod+F3 exec --no-startup-id /usr/bin/anki 
 bindsym $mod+F4 exec --no-startup-id /usr/bin/gnome-calculator 
 bindsym $mod+F7 exec --no-startup-id /usr/bin/firefox
-bindsym $mod+F10 exec --no-startup-id /home/iain/bin/playUrl.sh
+bindsym Mod4+v exec --no-startup-id /home/iain/bin/playUrl.sh
 bindsym $mod+F12 exec --no-startup-id /home/iain/bin/volume.sh
 

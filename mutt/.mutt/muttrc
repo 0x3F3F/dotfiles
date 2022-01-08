@@ -13,7 +13,7 @@ set signature        = ~/.mutt/.sig           # my signature file
 
 # Main mail setup -----------------------------------------------------------
 
-# Store seoparately in 400 file. Config with GPG.  Start with so ignored by ripgrep.
+# Store seoparately in 400 file. Config with GPG.  Start with . so ignored by ripgrep.
 source ~/.mutt/.P455W0RD.hide
 
 #ck Account Info
@@ -21,6 +21,7 @@ set from			="iainbenson@gmail.com"
 set realname		="Iain"
 set imap_user 		= "iainbenson"
 #set imap_pass 		= Sourced from separate file
+#set smtp_url		="smtp://$imap_user@smtp.gmail.com:465/"
 set smtp_url		="smtp://$imap_user@smtp.gmail.com:587/"
 #set smtp_pass 		= Sourced from separate file
 
@@ -29,12 +30,16 @@ set smtp_url		="smtp://$imap_user@smtp.gmail.com:587/"
 # Wasted too much time on it, might install neomutt instead.
 set folder   		= "imaps://imap.gmail.com/"    	# Sidebar only displays last 4 chars of this.  Which is rubbish.
 set spoolfile		= "+INBOX"
-set postponed		= "imaps://imap.gmail.com/[Gmail]/Drafts"
+#set postponed		= "imaps://imap.gmail.com/[Gmail]/Drafts"
+set postponed		= "+[Gmail]/Drafts"
+set record			= "~/.mutt/sent"	#Gmail automatically sets this but I also get a copy in home dir
+set trash			= "+Bin"
 mailboxes 			= "+INBOX" "+[Gmail]/Sent Mail"  "+[Gmail]/All Mail" "+[Gmail]/Drafts" "+[Gmail]/Spam"
+#mailboxes 			= "+INBOX" "+Sent Mail"  "+All Mail" "+Drafts" "+Spam"
 
-# This moves read mail to All Mail
+# This moves read mail to All Mail.. NOT WORKING IN NOEMUTT So Switch back to MUTT
 set move = yes
-set mbox="imaps://imap.gmail.com/[Gmail]/All Mail"
+set mbox="+[Gmail]/All Mail"
 
 # Other Connection details
 set ssl_starttls 	= yes
@@ -52,11 +57,12 @@ set realname='Iain Benson'
 # Assorted other options
 set wait_key = no        	# shut up, mutt
 #set copy = no				# Don't copy sent mail to sent-mail folder (~)
-set record="~/.mutt/sent"	# Record sent mail here instead of home. Not sure anout setting copy to no
+#set record="~/.mutt/sent"	# Record sent mail here instead of home. Not sure anout setting copy to no
 set delete               	# don't ask, just do
 unset confirmappend      	# don't ask, just do!
 set quit                 	# don't ask, just do!!
 unset mark_old           	# read/new is good enough for me
+set abort_nosubject = no	# Dont ask to abort if no subject
 #set beep_new            	# bell on new mails
 set pipe_decode          	# strip headers and eval mimes when piping
 set thorough_search      	# strip headers and eval mimes before searching
@@ -157,13 +163,14 @@ macro 	index gs	"<change-folder>+[Gmail]/Sent Mail<enter>"	"Go to Sent Mail'"
 macro 	index gd	<change-folder>+[Gmail]/Drafts<enter>		"Go to 'Drafts'"
 macro 	index gl	<change-folder>?							"Go to 'Label'"
 macro 	index gi	<change-folder>+INBOX<enter> 				"Go to inbox"
-macro 	index gt	"<change-folder>+[Gmail]/Spam<enter>"		"Go to 'Spam'"
+macro 	index gS	"<change-folder>+[Gmail]/Spam<enter>"		"Go to 'Spam'"
 macro 	index !		<save-message>+[Gmail]/Spam<enter><enter> 	"Report spam"
+macro	index .		"<save-message>+INBOX<enter><enter>" 		"Return message to Inbox"	 # Return to Inbox by pressing "."
 bind  	index a		group-reply									#Reply all
 bind	index c  	mail	 									#Compose
 #macro	index,pager I  <set-flag>O								"Mark as read"
 #macro	index,pager U  <clear-flag>O							"Mark as unread"
-bind	index d		noop										#unmap delete message		 
+bind	index d		noop										#unmap delete message as easy to press accidentally
 bind	index b		noop		 								#unmap bounce
 macro 	pager b 	<pipe-entry>'urlscan'<enter> 				"Ctrl-b to view urls in urlview"
 
@@ -179,22 +186,24 @@ macro 	pager gs 	"<change-folder>+[Gmail]/Sent Mail<enter>"	"Go to Sent Mail'"
 macro 	pager gd 	<change-folder>+[Gmail]/Drafts<enter>		"Go to 'Drafts'"
 #macro 	pager gl 	<change-folder>?							"Go to 'Label'"
 macro 	pager gi 	<change-folder>+INBOX<enter> 				"Go to inbox"
-macro 	pager gt 	"<change-folder>+[Gmail]/Spam<enter>"		"Go to 'Spam'"
+macro 	pager gS 	"<change-folder>+[Gmail]/Spam<enter>"		"Go to 'Spam'"
 #macro 	pager \cb 	<pipe-entry>'urlscan'<enter> 				"Ctrl-b to view urls in urlview"
 #bind  	pager v  	"view-attachements" 						# View attachments
 macro 	pager !  	<save-message>+[Gmail]/Spam<enter><enter> 	"Report spam"
+macro	pager .		"<save-message>+INBOX<enter><enter>" 		"Return message to Inbox"	 # Return to Inbox by pressing "."
 bind  	pager a  	group-reply									#Reply all
 bind 	pager <up> 	previous-line								#Scroll in message rather than index
 bind 	pager <down> next-line									#Scroll in message rather than index
-bind	index d		noop										#unmap delete message		 
-bind	index !		noop		 								#unmap report spam
+bind	pager d		noop										#unmap delete message		 
+#macro 	pager d  	"<save-message>+Bin<enter><enter>" 			# Do nt use delete as marks for deltion but stays.  Instead mofe to Bin folder
+#bind	index !		noop		 								#unmap report spam
 bind	index b		noop		 								#unmap bounce
 macro 	pager b 	<pipe-entry>'urlscan'<enter> 				"Ctrl-b to view urls in urlview"
 
 
 #macro index,pager \cb "set wait_key\ngrep -iPh 'https?://.+?\\s'\nunset wait_key\n" "Show URLs in message"
 
-#--------------------------------------------------------------------------
+# #--------------------------------------------------------------------------
 # query bindings
 #--------------------------------------------------------------------------
  bind query a    "create-alias"     # create an alias from a message sender
