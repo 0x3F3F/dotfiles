@@ -183,6 +183,8 @@ exec --no-startup-id feh --bg-scale /home/iain/.config/wallpaper/muppet.jpg
 # Start redshift
 exec systemctl --user start redshift
 
+# Start kmousetool
+exec systemctl --user start kmousetool
 
 # Try to fix bug that show colored bars at bottom right of terminal windws
 # Caused by terminal application not painting background on all of canvas
@@ -261,7 +263,8 @@ exec --no-startup-id pa-applet
 # Think this is as either (i) bashrc not ran OR (ii) Thre is no terminal prompt
 # I'll instead keep come colour definitions in .Xdefaults
 # After progfram terminated the ';bash -i' loads new terminal that does pick up base16
-exec --no-startup-id /usr/bin/firefox 
+#exec --no-startup-id /usr/bin/firefox 
+exec --no-startup-id /usr/bin/chromium
 # issue with messed up fonts .  Think as X hasn't finished so add small delay
 exec --no-startup-id "sleep 3; /usr/bin/urxvt -name 'Portfolio' -e bash -c '/home/iain/scripts/portfolio.py;bash -i'"
 #exec  --no-startup-id "/usr/bin/urxvt -name 'mutt' -e bash -c 'bash -i'"

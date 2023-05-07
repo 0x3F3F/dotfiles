@@ -252,7 +252,7 @@ if has("autocmd")
 
 	"Markdown/Vimwiki files
 	autocmd BufEnter,BufRead *.wiki,*.md setlocal omnifunc=htmlcomplete#CompleteTags filetype=markdown tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab spell spelllang=en_gb 
-	autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags syntax=markdown tw=115 wrap linebreak nolist spell spelllang=en_gb
+	autocmd FileType markdown setlocal omnifunc=htmlcomplete#CompleteTags syntax=markdown tw=195 wrap linebreak nolist spell spelllang=en_gb
 	autocmd BufEnter,BufRead Training_* setlocal nowrap
 
     "C type files
@@ -326,6 +326,8 @@ autocmd FileType python let b:delimitMate_nesting_quotes=['"', '''']
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 set laststatus=2
+" Vim slow, apparently this might help 6Apr23
+" let g:airline_extensions = []
 
 " Nerdcommmenter bug issue 134 workaround.  C files already with comments
 let g:NERDLPlace='/*'
@@ -352,7 +354,7 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1									
 let g:neocomplete#auto_completion_start_length = 4									
 " Set minimum syntax keyword length:
-let g:neocomplete#sources#syntax#min_keyword_length = 3					
+let g:neocomplete#sources#syntax#min_keyword_length = 5					
 " Define dictionary:
 let g:neocomplete#sources#dictionary#dictionaries = { 'default' : '',}	
 
@@ -406,6 +408,7 @@ let mapleader="\<Space>"
 
 " Fuck right off Ex mode
 nnoremap Q <Nop>
+nnoremap q: <Nop>
 
 " Quicker Escape
 " Use NOREmap perferable as otherwise pauses to see what next char is 

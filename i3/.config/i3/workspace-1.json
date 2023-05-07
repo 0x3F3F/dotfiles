@@ -17,15 +17,13 @@
                "x": 0,
                "y": 0
             },
-            "name": "Mozilla Firefox",
+            "name": "TweetDeck - Chromium",
             "percent": 0.85,
             "swallows": [
                {
-                "class": "^Firefox$",
+                "class": "^chromium-browser$",
                 "instance": "^Navigator$",
-                "window_role": "^browser$"
-               // "title": "^\\(23\\)\\ Your\\ RSS\\ feeds\\ ·\\ FreshRSS\\ \\-\\ Mozilla\\ Firefox$",
-               // "transient_for": "^$",
+                //"window_role": "^browser$"
                }
             ],
             "type": "con"

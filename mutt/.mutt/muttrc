@@ -14,7 +14,14 @@ set signature        = ~/.mutt/.sig           # my signature file
 # Main mail setup -----------------------------------------------------------
 
 # Store seoparately in 400 file. Config with GPG.  Start with . so ignored by ripgrep.
-source ~/.mutt/.P455W0RD.hide
+#source ~/.mutt/.P455W0RD.hide
+# Following 4 comands added as gmail no longer allows password authentication.  
+# See http://www.dcs.gla.ac.uk/~jacobd/posts/2022/03/configure-mutt-to-work-with-oauth-20/
+#set imap_authenticators = "oauthbearer:xoauth2"
+set imap_authenticators = "oauthbearer"
+set imap_oauth_refresh_command = "/home/iain/.mutt/oauth2/mutt_oauth2.py /home/iain/.mutt/oauth2/generated_oath2_token_file"
+set smtp_authenticators = "oauthbearer"
+set smtp_oauth_refresh_command = "/home/iain/.mutt/oauth2/mutt_oauth2.py /home/iain/.mutt/oauth2/generated_oath2_token_file"
 
 #ck Account Info
 set from			="iainbenson@gmail.com"
@@ -28,7 +35,7 @@ set smtp_url		="smtp://$imap_user@smtp.gmail.com:587/"
 # Folders Setup
 # Sidebar issue as documented here: https://groups.google.com/forum/#!topic/linux.debian.bugs.dist/kN_CHw8mkLA
 # Wasted too much time on it, might install neomutt instead.
-set folder   		= "imaps://imap.gmail.com/"    	# Sidebar only displays last 4 chars of this.  Which is rubbish.
+set folder   		= "imaps://imap.gmail.com:993"    	# Sidebar only displays last 4 chars of this.  Which is rubbish.
 set spoolfile		= "+INBOX"
 #set postponed		= "imaps://imap.gmail.com/[Gmail]/Drafts"
 set postponed		= "+[Gmail]/Drafts"
@@ -40,12 +47,14 @@ mailboxes 			= "+INBOX" "+[Gmail]/Sent Mail"  "+[Gmail]/All Mail" "+[Gmail]/Draf
 # This moves read mail to All Mail.. NOT WORKING IN NOEMUTT So Switch back to MUTT
 set move = yes
 set mbox="+[Gmail]/All Mail"
+#set mbox="+[Gmail]/Spam"
 
 # Other Connection details
 set ssl_starttls 	= yes
 set ssl_force_tls 	= yes
 set mail_check 		= 600		# Time in seconds
-set imap_keepalive 	= 900
+set imap_keepalive 	= 240		# Keep imap alive by polling evey xx seconds.  IMPORTANT: it doesnt seem to reconnect so thios is important.
+unset imap_passive				# Allow Mutt to open a new IMAP connection automatically, Think this sorts reconnect issue.
 set read_inc		= 500		# Update counter every..
 set write_inc		= 100
 
@@ -157,7 +166,8 @@ source $alias_file
 #--------------------------------------------------------------------------
 bind 	index G    bottom-page   							   # Like Vim
 bind	index g		noop
-bind 	index gg   top-page      							 	# Like Vim
+#bind 	index gg   top-page      							 	# Like Vim
+bind 	index gg   first-entry
 macro 	index ga	"<change-folder>+[Gmail]/All Mail<enter>"	"Go to all mail"
 macro 	index gs	"<change-folder>+[Gmail]/Sent Mail<enter>"	"Go to Sent Mail'"
 macro 	index gd	<change-folder>+[Gmail]/Drafts<enter>		"Go to 'Drafts'"

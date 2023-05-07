@@ -125,25 +125,46 @@ alias gp="cd /media/iain/Data/Archived\ Docs/Shares/Portfolio"
 alias gw="cd /home/iain/Dev/0x3F3F.github.io/_posts"
 alias l="ls"
 alias rr="/usr/bin/ranger"
-alias nb="/usr/local/bin/newsboat"
+alias nb="/usr/bin/newsboat"
 #Want Ripgrep to search hidden files, ignore gitignore, don't show permission errors, etc
 alias rg='rg --no-messages --no-ignore --hidden --follow -g "!**/{.git,.cache,.cpan}/"'
-alias ytd="yt-dlp"
+
+#alias yt2="yt-dlp --ignore-config -S 'res:240,codec:h264'" DOES 2 SEP DOWLLOADS IND MERGES TO MKV, NOT SMALLER
+alias yt4="yt-dlp --ignore-config -S 'res:480,codec:h264'"
+
+alias yl="yt-dlp -F"
+alias yt="ytplay.sh " # SET TO 480 in script
+
+
+# Download muisc from yt
 alias ytm="yt-dlp -ic  --extract-audio --yes-playlist --audio-format mp3 --audio-quality 0 "
-alias yt="ytplay.sh "
+
+
 alias r="ssh raspberrypi"
 alias ww="sudo web.sh"
 alias am="alsamixer -c 0"
 alias cm="/usr/bin/cmus" 
-alias b="vim /home/iain/Books/NotesOnBooks/Philosophy/De\ Botton,\ Alain/HowProustCanChangeYourLife.md"
+# Use foliate for ebooks, zathura for pdf
+#alias book="zathura /home/iain/Books/eBooks_xDone/Psychology/General/Manson,\ Mark/Models*"
+alias book="foliate /home/iain/Books/eBooks_Current/*.epub &"
+alias b="vim /home/iain/Books/eBooks_Current/Current.md"
+# alias foxitreader="/opt/foxitsoftware/foxitreader/FoxitReader.sh"	Put link in /usr/local/bin so can pick up from ranger
+
 
 # Hack to set cursor style to i-beam in urxvt
 echo -e "\033[5 q";clear
 
-rem () { /usr/bin/remind -w80 -cu -cc $@ /home/iain/.config/remind/reminders.rem ; } #As fn not alias to let pass params, eg -c2
+#As fn not alias to let pass params, eg -c2.   -w80,2,0= 80 cols, 2 lines, 0 lines betwen date and text
+rem () { /usr/bin/remind -m -w80,2,0 -cu -cc $@ /home/iain/.config/remind/reminders.rem ; } 
+
 weather () { curl wttr.in/"$@"; }
 cheat () { curl cheat.sh/"$@"; }
 pdf () { convert $1 -background white -alpha remove -alpha off $1 ; /usr/bin/img2pdf -o ${1%.*}.pdf $1 ; } 
+
+# Images too big for ranger to show and large file sizes
+# https://github.com/ImageMagick/ImageMagick/discussions/5772
+# https://stackoverflow.com/questions/17502791/resize-images-by-using-shell-script#17502820
+resize () { for file in *.jpg; do convert -auto-orient -resize 3648x2736 $file $file; done }
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
