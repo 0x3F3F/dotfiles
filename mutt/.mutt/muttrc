@@ -40,7 +40,7 @@ set spoolfile		= "+INBOX"
 #set postponed		= "imaps://imap.gmail.com/[Gmail]/Drafts"
 set postponed		= "+[Gmail]/Drafts"
 set record			= "~/.mutt/sent"	#Gmail automatically sets this but I also get a copy in home dir
-set trash			= "+Bin"
+set trash			= "+trash"
 mailboxes 			= "+INBOX" "+[Gmail]/Sent Mail"  "+[Gmail]/All Mail" "+[Gmail]/Drafts" "+[Gmail]/Spam"
 #mailboxes 			= "+INBOX" "+Sent Mail"  "+All Mail" "+Drafts" "+Spam"
 
@@ -180,7 +180,10 @@ bind  	index a		group-reply									#Reply all
 bind	index c  	mail	 									#Compose
 #macro	index,pager I  <set-flag>O								"Mark as read"
 #macro	index,pager U  <clear-flag>O							"Mark as unread"
+bind	index d		noop										#map delete message to D as easy to press accidentally
 bind	index D		delete-message								#map delete message to D as easy to press accidentally
+bind	index <Up>	previous-entry								#was previous-undeleted which skipped deleted messages so couldn't undelete
+bind	index <Down>	next-entry								#was next-undeleted which skipped deleted messages so couldn't undelete
 bind	index b		noop		 								#unmap bounce
 macro 	pager b 	<pipe-entry>'urlscan'<enter> 				"Ctrl-b to view urls in urlview"
 
