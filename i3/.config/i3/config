@@ -179,7 +179,7 @@ bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
 #Set background image
-exec --no-startup-id feh --bg-scale /home/iain/.config/wallpaper/muppet.jpg
+exec --no-startup-id feh --bg-scale /home/iain/.config/wallpaper/MistakenIdentity.jpg
 # Start redshift
 exec systemctl --user start redshift
 
@@ -243,6 +243,7 @@ exec --no-startup-id udiskie --tray
 # OR restart via 'sudo service network-namager restart'
 exec --no-startup-id nm-applet
 exec --no-startup-id pa-applet
+exec --no-startup-id blueman-applet
 #exec --no-startup-id volumeicon
 
 
@@ -268,6 +269,7 @@ exec --no-startup-id /usr/bin/chromium
 # issue with messed up fonts .  Think as X hasn't finished so add small delay
 exec --no-startup-id "sleep 3; /usr/bin/urxvt -name 'Portfolio' -e bash -c '/home/iain/scripts/portfolio.py;bash -i'"
 #exec  --no-startup-id "/usr/bin/urxvt -name 'mutt' -e bash -c 'bash -i'"
+exec --no-startup-id /usr/bin/redshift
 
 # Shutdown script from https://faq.i3wm.org/question/239/how-do-i-suspendlockscreen-and-logout/ 
 set $mode_system System (l) lock, (e) Logout, (s) Shutdown, (h) Hibernate, (r) Reboot, (Shift+s) Suspend
