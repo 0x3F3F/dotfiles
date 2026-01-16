@@ -112,6 +112,7 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 	
 
 ############ IRB Other Aliases ###############
+alias br="brightnessctl -d  'intel_backlight' set "		#40%
 alias h="history"
 alias v="vim"
 #Stop gvim errors on startup
@@ -134,6 +135,7 @@ alias yt4="yt-dlp --ignore-config -S 'res:480,codec:h264'"
 
 alias yl="yt-dlp -F"
 alias yt="ytplay.sh " # SET TO 480 in script
+
 
 
 # Download muisc from yt
@@ -178,13 +180,15 @@ fi
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
+#set -x
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
   elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
+  . /etc/bash_completion
   fi
 fi
+#set +x
 
 ############################### FZF #####################################################
 # USEFULL	vim **<TAB>		Files under current Dir

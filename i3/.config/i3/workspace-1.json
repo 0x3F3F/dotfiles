@@ -22,7 +22,7 @@
             "swallows": [
                {
                 "class": "^chromium-browser$",
-                "instance": "^Navigator$",
+                "instance": "^Chromium-browser$",
                 //"window_role": "^browser$"
                }
             ],
@@ -54,7 +54,7 @@
                     "swallows": [
                        {
                        "class": "^URxvt$",
-                       "instance": "^Portfolio$"
+                       "instance": "^Portfolio$",
                        // "title": "^bash$",
                        // "transient_for": "^$"
                        }
