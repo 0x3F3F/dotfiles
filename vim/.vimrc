@@ -19,14 +19,13 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'sjl/gundo.vim'
-"Plugin 'vimwiki/vimwiki'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'chriskempson/base16-vim'
-Plugin 'junegunn/fzf.vim'
-Plugin 'Shougo/neocomplete.vim'
+"Plugin 'lifepillar/vim-mucomplete'
 call vundle#end()
 
 filetype plugin indent on
@@ -207,12 +206,27 @@ else
 	" Not clear as still need to set colorscheme
 	let base16colorspace=256  " Access colors present in 256 colorspace
 	set t_Co=256
-	colorscheme base16-ocean
+	colorscheme base16-tomorrow-night
 
 	set cursorline							
 
-	" Change Visual mode select text as Color Scheme gives no contrant 
+	" Change Visual mode select text as Color Scheme gives no contrast 
 	highlight Visual cterm=bold ctermbg=White ctermfg=Black
+
+	" Execute :highlight to view highlight settings
+	" Following items had no contrast and so update to change tge text colour (Added ctermfg)
+	hi clear SpellBad "get rid of underline
+	hi SpellBad       term=reverse ctermbg=224 ctermfg=236
+	hi clear SpellCap "get rid of underline
+	hi SpellCap       term=reverse ctermbg=81  ctermfg=236
+	hi clear SpellRare "get rid of underline
+	hi SpellRare      term=reverse ctermbg=225 ctermfg=236
+	hi clear SpellLocal "get rid of underline
+	hi SpellLocal     term=underline ctermbg=14 ctermfg=236 
+
+	" Update airline colours as default is terrible
+	let g:airline_theme='base16'
+
 endif
 
 
@@ -337,42 +351,17 @@ let g:NERDRPlace='*/'
 let g:gundo_prefer_python3 = 1
 let g:gundo_width=90
 
-" Location of VimWiki files, launch with ,ww
-let g:vimwiki_ext2syntax = {'.md':'markdown','.markdown':'markdown','.mdown':'markdown'}
-let g:vimwiki_list = [{'path': '$HOME/Documents/Notes','syntax':'markdown', 'ext':'.md'}]
+" mucomplete
+" Not using as cant enter tab characters, not convinced about selections either
+"set completeopt+=menuone		" menuone for non autocomplete
+"set shortmess+=c   			" Shut off completion messages
+"set belloff+=ctrlg 			" Add only if Vim beeps during completion
+"let g:mucomplete#fuzzy = v:false " Lots of pointless matches
 
 " Save Screen Position
 let g:screen_size_restore_pos = 1
 
 let g:NERDTreeShowHidden=1
-
-" NeoComplete
-let g:acp_enableAtStartup = 0				
-" Use neocomplete:
-let g:neocomplete#enable_at_startup = 1									
-" Use smartcase:
-let g:neocomplete#enable_smart_case = 1									
-let g:neocomplete#auto_completion_start_length = 4									
-" Set minimum syntax keyword length:
-let g:neocomplete#sources#syntax#min_keyword_length = 5					
-" Define dictionary:
-let g:neocomplete#sources#dictionary#dictionaries = { 'default' : '',}	
-
-if !exists('g:neocomplete#keyword_patterns')
-    " Define keyword:
-    let g:neocomplete#keyword_patterns = {}								
-endif
-
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  " Enable heavy omni completion:
-  let g:neocomplete#sources#omni#input_patterns = {}					
-endif
-" Close the code preview window:
-let g:neocomplete#enable_auto_close_preview = 1							
-" Max list length:
-let g:neocomplete#max_list = 10											
-
 
 """"""""""""""""""""""""""""""""""""" FUNCTIONS """""""""""""""""""""""""""""""""""""""""
 
@@ -464,21 +453,6 @@ nnoremap <Leader>s :let @a=@" \| let @"=@+ \| let @+=@a<CR>
 
 " Whitespace before paste.  Note ^[ is escape
 let @p='a p'
-
-" Neocomplete - Recommended mappings mapp
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-" <TAB>: completion. Note that shift-tab inserts tab if plumvisible
-" Note also vimwiki uses tab/enter and so this doesn't work.  Now have fzf may uninstall
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
 
 """"""""""""""""""""""""""""""""""""" OTHER  """""""""""""""""""""""""""""""""""""""""
