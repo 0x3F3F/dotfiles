@@ -22,7 +22,7 @@ URxvt*perl-ext-common: default,clipboard,matcher
 
 ! Clickable links using matcher
 ! Can specify regex and diff programs.
-URxvt*urlLauncher: firefox
+URxvt*urlLauncher: chromium
 URxvt*matcher.button: 1
  
 

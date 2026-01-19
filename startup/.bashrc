@@ -103,13 +103,13 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export TERM="rxvt-unicode-256color"
 
-# Base16 color scheme as https://github.com/chriskempson/base16-shell
-# Type base16_<tab> to see all possibilities.  Can easily switch theme.
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-
-
-	
+# Base16 Shell
+# In terminal type base16_<TAB> to change colour scheme
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        source "$BASE16_SHELL/profile_helper.sh"
+base16_tomorrow-night
 
 ############ IRB Other Aliases ###############
 alias br="brightnessctl -d  'intel_backlight' set "		#40%
