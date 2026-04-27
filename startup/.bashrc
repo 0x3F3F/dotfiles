@@ -163,6 +163,10 @@ weather () { curl wttr.in/"$@"; }
 cheat () { curl cheat.sh/"$@"; }
 pdf () { convert $1 -background white -alpha remove -alpha off $1 ; /usr/bin/img2pdf -o ${1%.*}.pdf $1 ; } 
 
+# shortcut to ssh into box as ip addresses keep changing
+c () { ssh -i $HOME/.ssh/id_rsa_Optiplex1 -p 8842 -o StrictHostKeyChecking=no iain@$1 ; }
+
+
 # Images too big for ranger to show and large file sizes
 # https://github.com/ImageMagick/ImageMagick/discussions/5772
 # https://stackoverflow.com/questions/17502791/resize-images-by-using-shell-script#17502820
@@ -237,5 +241,7 @@ if [ "$REMINDER" != "No reminders." ] ; then
 	echo -e "\033[0;33m               " $REMINDER "\033[00m"
 fi
 
+# was loading global rc.conf over my settings.  Load only once, and make it mine
+export RANGER_LOAD_DEFAULT_RC=false
 
 
